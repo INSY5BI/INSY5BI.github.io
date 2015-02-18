@@ -69,23 +69,21 @@
     <!-- Page Content -->
     <div class="container">
 
+      <section id="section-overview">
+	<div class="row">
+		<h1 class="page-header">Übersicht</h1>
+	</div>
+      </section>
+
       <section id="section-intro">
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Intro <small>Hier gehts los ...</small></h1>
-                <?prettify lang=javascript?>
-                <pre class="prettyprint"> 
-    /**
-     * This is pretty printed code
-     */
-    var funktion = function(abc) {
-        if (true == true) {
-            if (typeof abc === 'function') abc();
-        }   
-    });
-                </pre>
-                <?prettify lang=scm?>
-                <pre class="prettyprint linenums">(friends 'of '(parentheses))</pre>
+                <p>Hier stehe ein intro text der dem user einiges erklärt.</p>
+                <p>Hier beziehe ich micht auf die funktion <code>Something.doThis('new');</code>, wobei der parameter ein <code>String</code></p> aber auch <code>Integer</code> sein darf.</p>
+                <!-- Wenn code eingebunden wird -> einfach auf gist.github.com - ein gist erstellen, veröffentlichen
+                     und dann anschließend die Embed URL in das document copieren -->
+		         <script src="https://gist.github.com/GeorgS/75ae7312f12e85b98ea2.js"></script>
             </div>
         </div>
       </section>

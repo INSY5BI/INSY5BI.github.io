@@ -3,102 +3,175 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Create.js Tutorial | Getting Started</title>
+  <title>Create.js Tutorial | Getting Started</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="css/prettify.css" type="text/css" rel="stylesheet" />
-    <style>
-    body {
-        padding-top: 70px;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    }
-    </style>
+  <!-- Custom CSS -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
 </head>
 
-<body onload="prettyPrint()">
+<body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Create.js Tutorial</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#section-intro">Intro</a>
-                    </li>
-                    <li>
-                        <a href="#">Section2</a>
-                    </li>
-                    <li>
-                        <a href="#">Section3</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+          <a href="#">
+            Asteroid Create.js Tutorial
+          </a>
+        </li>
+        <li>
+          <a href="#">Intro</a>
+        </li>
+        <li>
+          <a href="#">Shortcuts</a>
+        </li>
+        <li>
+          <a href="#">Animation</a>
+        </li>
+        <li>
+          <a href="#">Events</a>
+        </li>
+        <li>
+          <a href="#">About</a>
+        </li>
+        <li>
+          <a href="#">Services</a>
+        </li>
+        <li>
+          <a href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
-    <div class="container">
+    <div id="page-content-wrapper">
 
-      <section id="section-overview">
-	<div class="row">
-		<h1 class="page-header">Übersicht</h1>
-	</div>
-      </section>
-
-      <section id="section-intro">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Intro <small>Hier gehts los ...</small></h1>
-                <p>Hier stehe ein intro text der dem user einiges erklärt.</p>
-                <p>Hier beziehe ich micht auf die funktion <code>Something.doThis('new');</code>, wobei der parameter ein <code>String</code></p> aber auch <code>Integer</code> sein darf.</p>
-                <!-- Wenn code eingebunden wird -> einfach auf gist.github.com - ein gist erstellen, veröffentlichen
-                     und dann anschließend die Embed URL in das document copieren -->
-		         <script src="https://gist.github.com/GeorgS/75ae7312f12e85b98ea2.js"></script>
+        <section id="section-header">
+          <h1>Asteroid Create.js Tutorial</h1>
+          <p>here are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.paragraphs	wordsbytessStart with 'Loremipsum dolor sit amet...'</p>
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+              <div class="btn-group btn-group-justified" id="action-buttons" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-lg btn-primary">Resulat ansehen <i class="glyphicon glyphicon-save"></i></button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-lg btn-default">Files downloaden <i class="glyphicon glyphicon-menu-down"></i></button>
+                </div>
+              </div>
             </div>
-        </div>
-      </section>
+          </div>
+        </section>
 
-    </div>
-    <!-- /.container -->
+        <section id="section-intro">
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 class="page-header">Intro <small>Hier gehts los ...</small></h1>
+              <p>Hier stehe ein intro text der dem user einiges erklärt.</p>
+              <p>Hier beziehe ich micht auf die funktion <code>Something.doThis('new');</code>, wobei der parameter ein <code>String</code></p> aber auch <code>Integer</code> sein darf.</p>
+              <!-- Wenn code eingebunden wird -> einfach auf gist.github.com - ein gist erstellen, veröffentlichen
+              und dann anschließend die Embed URL in das document copieren -->
+              <script src="https://gist.github.com/GeorgS/75ae7312f12e85b98ea2.js"></script>
+            </div>
+          </div>
+        </section>
 
-    <!-- jQuery Version 1.11.1 -->
-    <script src="js/jquery.js"></script>
+        <section id="section-animation">
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 class="page-header">Animation <small>let's get things movin'</small></h1>
+              <p>Eine Animation verändert, über einen Zeitraum, die visuellen Eigenschaften eines Objektes. In der
+                Programmierung werden dafür einige Paramter defieniert wir z.B.: <code>setInterval()</code>, <code>setTimeout()</code>, oder
+                <code>requestAnimationFrame()</code>. Wichtig ist es die Funktion <code>stage.update()</code> aufzurufen die das Ganze dann
+                anzeigt.</p>
+              <pre>
+                circle.x = circle.x + 3;
+                if (circle.x > stage.canvas.width) { circle.x = 0; }
+              </pre>
+              <h2>Ticker();</h2>
+              <p>Der Ticker ist eine Klasse und bietet ein statisches Interface um einen Tick an verschiedene Objekte zu schicken.
+                Dafür brauchen wir einen event listener. Mit <code>addEventListener("tick", handler);</code> können wir diesen hinzufügen.
+                Dieser listener kann eine Funktion oder einem mit dem handleEvent, definiertes Objekt.</p>
+              <pre>createjs.Ticker.addEventListener("tick", tick);
+function tick() { console.log("TICK!!!"); }</pre>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Google Pretty Print -->
-    <script src="js/prettify.js"></script>
+              <p>Im unten stehenden Code kann man die framerate ändern.</p>
+              <pre>// these are equivalent, 1000ms / 40fps = 25ms
+createjs.Ticker.setInterval(25);
+createjs.Ticker.setFPS(40);</pre>
+
+              <h2>Zeit basierende Animationen</h2>
+              <p>Diese Animationen sind unabhängig von der frame rate und ermöglicht ihnen die framrate dynamisch zu verändern.
+                Der Ticker spielt hier eine große Rolle.</p>
+              <pre>function tick(event) {
+    // move 100 pixels per second (elapsedTimeInMS / 1000msPerSecond * pixelsPerSecond):
+    circle.x += event.delta/1000*100;
+    // this will log a steadily increasing value:
+    console.log("total time: "+createjs.Ticker.getTime());
+}</pre>
+
+              <h2>Tween.js</h2>
+              <p>Es gibt einige tweening Klassen  die das Animieren vereinfachen wie z.B.: TweenJS & TweenLite
+TweenJS ist eine Javascript Bibliothek und verwendet stage.update() nicht, weil es eine eigene Methode zum refreshen
+der Stage verwendet. Es wird von allen Browsern unterstützt.Um einen Tween aufzurufen verwendet man folgender Zeile
+ <code>(Tween(target, [props], [pluginData]);</code>.</p>
+ <pre>•	Target = Das Zielobjekt welches getweent wird.
+•	Props = Die Einstellungen die man dem Tween zuordnen möchte.
+  o	loop: sets the loop property on this tween.
+  o	useTicks: uses ticks for all durations instead of milliseconds.
+  o	ignoreGlobalPause: sets the ignoreGlobalPause property on this tween.
+  o	override: if true, Tween.removeTweens(target) will be called to remove any other tweens with the same target.
+  o	paused: indicates whether to start the tween paused.
+  o	position: indicates the initial position for this tween.
+  o	onChange: specifies a listener for the "change" event.
+•	pluginData = Ein Objekt welches Daten enthält für die Installation von Plug-Ins.
+</pre>
+
+            </div>
+          </div>
+        </section>
+
+      </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+
+
+
+  <!-- jQuery Version 1.11.1 -->
+  <script src="js/jquery.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="js/bootstrap.min.js"></script>
+
+  <!-- TODO: mobile toggle -->
+  <script>
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+  </script>
 
 </body>
 

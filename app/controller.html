@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="./lib/easeljs-0.8.0.min.js"></script>
+</head>
+
+<body onload="init()">
+<canvas id="canvas" width="500" height="400" style="border: black solid 1px"></canvas>
+</body>
+
+<script>
+    var stage;
+	
+	var image = new Image();
+	image.src = "src/spaceship.png";
+	image.onload = handleLoad;
+	var raumschiff = new createjs.Bitmap(image);
+	raumschiff.scaleX = 0.2;
+	raumschiff.scaleY = 0.2;
+	raumschiff.onload = handleLoad;
+	raumschiff.x = 250;
+	raumschiff.y = 200;
+	var rotSave = 0;
+	
+	var g = new createjs.Shape();
+	g.graphics.beginFill("red").drawCicle(0,0,30);
+	g.x=100;
+	g.y=100;
+	
+	function handleLoad(evt){
+		raumschiff.regX = raumschiff.image.width/2;
+		raumschiff.regY = raumschiff.image.height/2;
+	}
+	
+    function init() {
+        stage = new createjs.Stage(document.getElementById('canvas'));
+        createjs.Ticker.addEventListener("tick", handleTick);
+        createjs.Ticker.setFPS(60);
+		stage.addChild(raumschiff);
+		stage.addChild(g);
+		
+		stage.on("stagemousedown", function(evt) {
+			
+			//rotSave += 10;
+		})
+		
+		stage.on("stagemousemove",function(evt) {
+			rotSave = (Math.sin((250 - evt.stageX)/250) + Math.cos((200 - evt.stageY)/200))*360;
+		})
+    }
+	
+	
+    function handleTick(e) {
+		//rotSave += 1;
+		raumschiff.rotation = rotSave;
+        stage.update();
+    }
+	
+    function start() {
+		
+		
+		}
+</script>
+</html>

@@ -11,6 +11,8 @@
 
   <title>Create.js Tutorial | Getting Started</title>
 
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,300italic,700' rel='stylesheet' type='text/css'>
+
   <!-- Bootstrap Core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -27,38 +29,35 @@
 
 </head>
 
-<body>
+<body data-spy="scroll" data-offset="0" data-target="#myScrollspy">
 
   <div id="wrapper">
 
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
-      <ul class="sidebar-nav">
+      <ul class="sidebar-nav" id="myScrollspy">
         <li class="sidebar-brand">
           <a href="#">
             Asteroid Create.js Tutorial
           </a>
         </li>
         <li>
-          <a href="#">Intro</a>
+          <a href="#section-intro">Intro</a>
         </li>
         <li>
-          <a href="#">Shortcuts</a>
+          <a href="#section-basics">Basics</a>
         </li>
         <li>
-          <a href="#">Animation</a>
+          <a href="#section-controller">Kontroller</a>
         </li>
         <li>
-          <a href="#">Events</a>
+          <a href="#section-gegner">Gegner</a>
         </li>
         <li>
-          <a href="#">About</a>
+          <a href="#section-animation">(Animation)</a>
         </li>
         <li>
-          <a href="#">Services</a>
-        </li>
-        <li>
-          <a href="#">Contact</a>
+          <a href="#section-about">About</a>
         </li>
       </ul>
     </div>
@@ -66,38 +65,301 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-
-        <section id="section-header">
-          <h1>Asteroid Create.js Tutorial</h1>
-          <p>here are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.paragraphs	wordsbytessStart with 'Loremipsum dolor sit amet...'</p>
-          <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-              <div class="btn-group btn-group-justified" id="action-buttons" role="group" aria-label="...">
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-lg btn-primary">Resulat ansehen <i class="glyphicon glyphicon-save"></i></button>
-                </div>
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-lg btn-default">Files downloaden <i class="glyphicon glyphicon-menu-down"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
+        <img id="meteor" src="enemy.png">
         <section id="section-intro">
           <div class="row">
             <div class="col-lg-12">
-              <h1 class="page-header">Intro <small>Hier gehts los ...</small></h1>
-              <p>Hier stehe ein intro text der dem user einiges erklärt.</p>
-              <p>Hier beziehe ich micht auf die funktion <code>Something.doThis('new');</code>, wobei der parameter ein <code>String</code></p> aber auch <code>Integer</code> sein darf.</p>
-              <!-- Wenn code eingebunden wird -> einfach auf gist.github.com - ein gist erstellen, veröffentlichen
-              und dann anschließend die Embed URL in das document copieren -->
-              <script src="https://gist.github.com/GeorgS/75ae7312f12e85b98ea2.js"></script>
+              <h1 class="page-header">Intro <small>was erwartet mich hier?</small></h1>
+              <p>Hallo und herzlich willkommen zu unserem Tutorial.</p>
+
+<p>Unser Spiel ähnelt sich dem klassischem Space Invader, indem ein Spaceship Meteoriten abschießt die zufällig auf einem zu fliegen und mit dem Controller kann man durch den Weltall fliegen.
+Wir haben unser Spiel mittels der CreateJs-Suite zum Leben erweckt.</p>
+
+
+</p>CreateJS erlaubt es, schnell und einfach interaktionsreiche Inhalte für Webseiten umzusetzen. Ob Spiele, Animationen oder Sounddateien. CreateJS ist einfach zu Implementieren.
+und setzt sich zusammen aus verschiedenen JavaScript-Bibliotheken, die es ermöglichen, Elemente komplett neu zu erzeugen oder bestehenden DOM Elemente aufzunehmen und zu manipulieren. CreateJS lässt sich mit jeder anderen Bibliothek kombinieren und die verschiedenen Bestandteile der Suite lassen sich nach Belieben verwenden, um interaktionsreiche Inhalte zu erzeugen. Die CreateJS-Bibliothek besteht aus vier verschiedenen Modulen: EaselJS, TweenJS, SoundJS und PreloadJS, die jeweils verschiedene Funktionen erfüllen.
+Wir stellen euch kurz vor, was mit CreateJS, das als Open-Source bei GitHub verfügbar ist, alles möglich ist.</p>
+
+<p><b>EaselJS</b>  ist dafür da, die Arbeit mit dem HTML5-Canvas-Objekt zu vereinfachen, indem es eine hierachische Display-Liste aller Objekte und Hilfsklassen bereitstellt.</p>
+<p><b>TweenJS</b>  ist eine JavaScript-Bibliothek für Tweenings und Animationen. Sie ist zwar entwickelt worden, um gut mit EaselJS zusammen zu arbeiten, aber Abhängigkeiten zwischen den beiden bestehen nicht. CSS-Style-Eigenschaften können mit TweenJS animiert werden.  Die API ist ziemlich leicht aber sehr mächtig, es erleichtert das Erstellen von komplexen tweens.</p>
+<p><b>SoundJS</b>  ist der dritte Teil von CreateJS, der eine JavaScript-API für das vereinfachte Bereitstellen von Audio in Spielen und interaktiven Websites bietet.</p>
+<p><b>PreloadJS</b>  erlaubt das Vorladen von Inhalteselementen wie Bildern, Sounds, Skripten oder anderen Daten mit Statusanzeige, mehrfachen Verbindungen für gleichzeitiges Laden und mehr.</p>
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="btn-group btn-group-justified" id="action-buttons" role="group" aria-label="...">
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-lg btn-primary" id="start-game"><i class="glyphicon glyphicon-eye-open"></i> Resulat ansehen</button>
+              </div>
+              <div class="btn-group" role="group">
+                <a href="https://github.com/INSY5BI/INSY5BI.github.io/"<button type="button" class="btn btn-lg btn-default"><img src="http://www.turshija.com/signature/github.png" width="16px"> Github</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+          </div>
+          </div>
+        </section>
+
+        <section id="section-basics">
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 class="page-header">Basics <small></small></h1>
+              <p>Bevor wir nun beginnen können unser Spiel zu programieren benötigen wir ein paar files um create.js zum laufen zu bringen.
+                Nachdem du die <a href="http://www.createjs.com/Downloads" class="btn btn-primary">Files</a> heruntergeladen hast plaziere sie in einem <code>lib/</code> ordner und binde Sie mit dem <code>&#60;script></code> tag ein.</p>
+              <pre>
+&#60;script src="lib/easeljs-0.8.0.min.js">&#60;/script>
+&#60;script src="lib/preloadjs-0.6.0.min.js">&#60;/script>
+&#60;script src="lib/soundjs-0.6.0.min.js">&#60;/script>
+&#60;script src="lib/tweenjs-0.6.0.min.js">&#60;/script></pre>
+              <p>Nun erzeugen wir noch ein file <code>game.js</code> das wir ebenfalls laden. In diesem file möchten wir unsere Game Klasse starten nachdem das window objekt fertig geladen hat.</p>
+              <pre>
+var Game = function game() {
+  console.log("SPIEL GESTARTET");
+};
+
+window.onload = function {
+  new Game();
+};</pre>
+
+              <p>Nun werden wir uns ansehen was eigentlich eine Stage ist und wie man Elemente darauf positionieren kann.
+          Eine Stage ist wie eine Bühne – auf ihr werden alle Elemente positioniert. </p>
+          So wird eine Stage erstellt:
+          <pre>new createjs.Stage("game");</pre>
+          <p>Hierbei wird diese in einem Canvas „erstellt. Dies ist wichtig, denn ohne Canvas funktioniert es nicht. Hier ein Beispiel wie das zugehörige Canvas-Objekt aussehen könnte.</p>
+          <pre>&#60;canvas id="game" width="500" height="500">&#60;/canvas></pre>
+          <p>Bevor wir nun weitermachen werden wir eine Stage im Konstruktor unserer Game Klasse definieren. Das sieht dann so aus: </p>
+          <pre>
+          var Game = function game() {
+              console.log("SPIEL GESTARTET");
+
+              this.stage = new createjs.Sage("game");
+          };</pre>
+          <p>Nun haben wir eine Stage, aber da fehlen noch einige Dinge – Wie zum Beispiel:
+Wie oft soll diese Stage sich updaten? Also einfach gesagt muss die Stage wissen wie oft und ob Sie sich aktualisieren soll. Um dies zu realisieren fügen wir einen Ticker hinzu. Dies ist wichtig denn ansonsten würde sich nichts auf unserer Stage bewegen  - und dass wollen wir ja nicht!</p>
+<p>Man sieht dass wir eine Framerate von 30 gewählt haben. Doch zurzeit weiß die Stage nur das es 30FPS sind und leider noch nicht WIE sie sich updaten soll – dieser Stage muss man auch alles sagen ;)</p>
+<pre>
+var Game = function game() {
+    var _this = this;
+    console.log("SPIEL GESTARTET");
+
+    this.stage = new createjs.Sage("game");
+
+    createjs.Ticker.setFPS(30);
+    createjs.Ticker.addEventListener("tick", function() {
+      _this.update();
+    },false);
+};
+
+Game.protoype.update = function update() {
+  // -> wird 30x in der Sekunden aufgerufen
+  this.stage.update();
+};</pre>
+
+            <p>Wir haben auch einen EventListener hinzugefügt. Dieser überprüft ob Dinge passieren – diese können alles Mögliche sein, vom Mausklick bis zum einfachen Laden der Website. In unserem Fall führt er die Funktion <code>Game.update();</code> bei jedem „tick“ aus, also 30 in der Sekunde. Um zu sehen was auf der Stage passiert werden wir in der Funktion die Stage „updaten“. Dazu nutzen wir die bereits vorhandene Methode <code>stage.update();</code>. Diese funktion wenden wir auf unsere erstellt Stage an. </p>
+
+            <p>Nun haben wir eine voll funktionstüchtige Stage – welche zwar bis jetzt noch nichts macht, außer unnötig sich selbst zu aktualisieren – aber um das zu ändern werden wir jetzt eine Punkte anzeige auf unsere Stage zeichnen.</p>
+            <p>Nun haben wir alles um endlich unsere ersten Graphics auf die Stage zu bringen – ABER davor ein wenig Theorie, die ist immer wichtig! In CreateJS wird folgendermaßen „gezeichnet“:
+
+Man kann sich dieses Modell wie eine Zwiebel vorstellen – Außen die Stage, in der die Shapes sind, in diesen sind wiederum die Graphics und all das in der Hülle – dem Canvas!
+ Erstmal wird eine Graphic erstellt. In dieser werden dann z.B. ausgefüllt oder gezeichnet – Jedoch noch NICHT platziert (Platziert bezogen auf WO ist das Objekt). Danach wird diese Graphic in eine „Shape“ geladen. In der kann man unter anderem festlegen wie groß das Objekt ist. Und erst dieses Shape wird dann auf die Stage gebraucht, wo man es dann sehen kann.
+Wir werden nun Schritt für Schritt etwas auf die Stage bringen.</p>
+
+            <p>Nun wollen wir nun unsere ersten Objekte, in CreateJS sogenannte Graphics, hinzufügen. Dazu fügen wir eine variable hinzu die unseren Punktestand speichert, und eine funktion die den Punktestand auf die Stage zeichnet. Wie wir gerade erklärt, dürfen wir die Graphic nicht direkt zur stagen hinzufügen sondern müssen diese in einen Container, in eine Shape verpacken.</p>
+            <pre>
+              var Game = function game() {
+                  var _this = this;
+                  console.log("SPIEL GESTARTET");
+
+                  this.stage = new createjs.Sage("game");
+
+                  this.points = 0;
+                  this.drawScore();
+
+                  createjs.Ticker.setFPS(30);
+                  createjs.Ticker.addEventListener("tick", function() {
+                    _this.update();
+                  },false);
+              };
+
+              Game.prototype.drawScore = function() {
+                // Rechteck als Hintergrund
+                var rect = new createjs.Graphics();
+                rect.beginFill(createjs.Graphics.getRGB(100, 100, 100));
+                rect.drawRect(0,0,100,40);
+                var background = new createjs.Shape(rect);
+                // Text den wir im Klassen scope verfügbar machen
+                // um diesen später aktualisieren zu können
+                this.score = new createjs.Text(this.points + " Punkte", "20px Arial", "#fff");
+                this.score.x = 10;
+                this.score.y = 10;
+                this.stage.addChild(background);
+                this.stage.addChild(this.score);
+              };
+            </pre>
+          <p>Wie man sehen kann haben wir die Graphic „rect“ erzeugt und dieses mit einem wunderschönen Grau versehen. Danach verwenden wir die Funktion drawRect um – was sonst – ein Rechteck mit den Abmessungen 100x40 zu zeichnen.</p>
+          <p>Anschließend haben wir unsere Graphic in unser Shape „background“ gegeben und danach diese Shape auf die Stage gebracht. Auf die Stage bringen wir Shapes mit addChild. Danach Fügen wir einen text mit der <code>createjs.Text()</code> funktion hinzu. Hier kann man den Text sowie styling parameter angeben um seinen Text zu gestalten. Wir haben in diesem Abschnitt gelernt wie wir Stages, Graphics, Shapes und Text erzeugen. Des Weiteren haben wir einen kurzen Ausflug in Updates und EventListener gemacht die wir im nächsten abschnitt verwenden werden um Unseren Kontroller leben ein zu hauchen.</p>
             </div>
           </div>
         </section>
 
-        <section id="section-animation">
+        <section id="section-controller">
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 class="page-header">Kontroller <small>let's get things movin'</small></h1>
+              <p>Wir beginnen damit unsere Figur einzubinden. Da wir ein statisches Bild haben und keine Animation reicht dafür ein Bitmap und es wird kein Sprite, dazu später mehr, benötigt.</p>
+              <p>Wir möchten nun das Bild <code>assets/controller.png</code> loaden, dazu Benötigen wir die Bitmap Classe. Für den Controller ezeugen wir einen weiter Funktion <code>Game.drawController</code>.</p>
+              <pre>
+                Game.prototype.drawController = function() {
+                  this.controller = new createjs.Bitmap("assets/controller.png");
+                  this.controller.x = this.stage.canvas.width/2-32;
+                  this.controller.y = this.stage.canvas.height/2-32;
+                  this.controller.regX = 32;
+                  this.controller.regY = 32;
+                  this.stage.addChild(this.controller);
+                };
+              </pre>
+              <p>Nachdem wir das Bild geladen haben möchten wir den Controller nun in der Mitte plazieren. Dazu verschieben wir das 64x64px große Objekt in die mitte das Canvas und ziehen die hälte des Objects ab um exakt in der Mitte zu sein. Da wir später unseren Controller rotieren möchten müssen wir auch den mittelpunkt richtig setzen, da sich der Kontroller sonst um den Punkt links oben drehen würde. Mit <code>regX</code> und <code>regY</code> verschiebt den Mittelpunkt relativ zu dem punkt an dem das Objekt plaziert ist</p>
+              <p>Nun möchten wir unseren Kontroller nach links und rechts rotieren wenn der Benutzer auf die Pfeiltasten clickt. Dazu fügen wir zu unserm Konstructor einen Event Listner hinzu der auf <code>keyPress</code> reagiert und dann eine funktion <code></code> ausführt die sich dann um die rotation kümmert.</p>
+              <pre>
+                var _this = this;
+                document.onkeydown = function(ev) {
+                  _this.handleKeys(ev);
+                };</pre>
+              <pre>
+                Game.prototype.handleKeys = function(ev) {
+                  var _this = this;
+                  switch(ev.keyCode) {
+                    case 37: // Linke Pfeiltaste
+                      if (_this.controller.rotation < 0) {
+                        _this.controller.rotation = 360;
+                      }
+                      _this.controller.rotation -= 10;
+                      break;
+                    case 39: // Rechte Pfeiltaste
+                      if (_this.controller.rotation > 360) {
+                        _this.controller.rotation = 0;
+                      }
+                      _this.controller.rotation += 10;
+                      break;
+                    case 32: // SPace
+                      // -> hier möchten wir später schießen können
+                      break;
+                  }
+                };
+              </pre>
+              <p>In dieser Funktion prüfen wir nun ob die gewünschten Tasten gedrückt wurden und rotieren dann mit der property <code>rotation</code> in dem wir 10° hinzufügen oder entfernen. Hier müssen wir auch darauf achten das wir überprüfen müssen ob wir unter 0° sind bzw. über 360° und müssen die rotation dann zurück setzen da sonst in späterer Folge unsere Formel für das abschießen nicht funktioniert. Dadurch das wir vorher in der <code>Game.update</code> <code>stage.update();</code> aufrufen wird das Spiel aktualisiert und wir können somit unseren Kontroller bewegen.</p>
+
+              <p>Nun möchten wir dem Kontroller die Funktion hinzufügen das er schießen kann. Dazu laden wir wieder eine Grafik die unser Geschoss darstellt und müssen diese je nach rotation des Kontrollers abschießen. Sobald das Geschoss auserhalb der Stage ist wollen wir das Objet entfernen da unser Spiel sonst mit der Zeit immer langsamer werden würde da es immer mehr Grafiken speichert. Zunächst verbinden wir die Space taste mit einer <code>Game.shoot</code> funktion die wir erstellen. Davor müssen wir aber noch einen so genannten <code>Container()</code> zu dem wir unsere Grafiken, unsere Bullets, zusammenfassen im Konstruktor erstellen.</p>
+
+              <pre>
+                this.bullets = new createjs.Container();
+                this.stage.addChild(this.bullets);
+              </pre>
+              <pre>
+                case 32: // SPace
+                  _this.shoot();
+                  break;
+              </pre>
+              <pre>
+Game.prototype.shoot = function() {
+  var bullet = new createjs.Bitmap("assets/bullet.png");
+  bullet.x = this.stage.canvas.width/2-32;
+  bullet.y = this.stage.canvas.height/2-32;
+  bullet.regX = 32;
+  bullet.regY = 32;
+  bullet.rotation = this.controller.rotation;
+  this.bullets.addChild(bullet);
+};</pre>
+              <p>Auch hier, genau wie bei dem Controller, setzen wir unser Geschoss in die Mitte der Stage und rotieren es in die Selbe richtung wie unser Kontroller. Danach fügen wir unsere Grafik zu dem Coontainer hinzu den wir vorher zur Stage hinzugefügt haben.</p>
+              <p>Nun werden wir unsere <code>Game.update</code> funktion erweiter um die Bullets zum fliegen zu bringen</p>
+              <pre>
+Game.prototype.update = function() {
+  var _this = this;
+for(var i = 0; i < _this.bullets.children.length; i++)
+ {
+     // Flugrichtung berechnen
+     _this.bullets.children[i].x = 10 * Math.cos((_this.bullets.children[i].rotation-90)/(Math.PI/4)) + _this.bullets.children[i].x;
+     _this.bullets.children[i].y = 10 * Math.sin((_this.bullets.children[i].rotation-90)/(Math.PI/4)) + _this.bullets.children[i].y;
+
+     // Auserhalb der Stage
+     if(_this.bullets.children[i].y < -2 || _this.bullets.children[i].y > _this.canvasHeight ||
+       _this.bullets.children[i].x < -2 || _this.bullets.children[i].x > _this.canvasWidth )
+      {
+          _this.bullets.removeChildAt(i);
+      }
+
+    }
+    this.stage.update();
+  }</pre>
+              </div>
+            </div>
+          </section>
+
+          <section id="section-gegner">
+            <div class="row">
+              <div class="col-lg-12">
+                <h1 class="page-header">Gegner</h1>
+                <p>Wir möchten nun alle 3 Sekunden eine gegner auf die Stage hinzufügen dazu definieren wir eine funktion <code>Game.addEnemy</code> die wir dann durch <code>setInterval</code> in userem Konstruktor alle 3 Sekunden ausführen.</p>
+                <pre>  setInterval(function(){
+                    _this.addEnemy();
+                  }, 3000);</pre>
+                <pre>Game.prototype.addEnemy = function() {
+                    var enemy = new createjs.Bitmap("assets/enemy.png");
+                    enemy.x = Math.floor(Math.random() * (this.stage.canvas.width - 100)) ;
+                    enemy.y = Math.floor(Math.random() * (this.stage.canvas.height - 100));
+                    enemy.rotation = Math.floor(Math.random()*360);
+                    this.enemies.addChild(enemy);
+                  };
+                </pre>
+                <p>Wir laden wieder eine Grafik, diesmal einen Asteoriten, den wir an einer zufälligen stelle auf unsere Stage plazieren und ihm eine zufällige richtung geben. Nun müssen wir uns in der <code>update</code> funktion darum kümmer das unser gegner sich auch bewegt und noch wichtiger, das er verschwindet wenn wir Ihn mit unserem Geschoss treffen.</p>
+                <pre>
+Game.prototype.update = function() {
+  var _this = this;
+  for(var i = 0; i < _this.bullets.children.length; i++)
+   {
+
+       // Flugrichtung der Bullets berechnen
+       _this.bullets.children[i].x = 10 * Math.cos((_this.bullets.children[i].rotation-90)/(Math.PI/4)) + _this.bullets.children[i].x;
+       _this.bullets.children[i].y = 10 * Math.sin((_this.bullets.children[i].rotation-90)/(Math.PI/4)) + _this.bullets.children[i].y;
+
+       // Auserhalb der Stage
+       if(_this.bullets.children[i].y < -2 || _this.bullets.children[i].y > _this.canvasHeight ||
+       _this.bullets.children[i].x < -2 || _this.bullets.children[i].x > _this.canvasWidth )
+        {
+            _this.bullets.removeChildAt(i);
+        }
+
+       // Überprüfen ob Bullet einen der Gegner getroffen hat
+       for(var j = 0; j < _this.enemies.children.length; j++) {
+         if (_this.bullets.children[i]) {
+         var pt = _this.bullets.children[i].localToLocal(0,0, _this.enemies.children[j]);
+         if (_this.enemies.children[j].hitTest(pt.x, pt.y)) {
+              // Bei erfolg wird der Punktestand aktualisiert
+              _this.points++;
+              _this.score.text = _this.points + " Punkte";
+              // und Bullet sowie Enemy von der Stage entfernt
+              _this.enemies.removeChildAt(j);
+              _this.bullets.removeChildAt(i);
+           }
+         }
+       }
+
+   }
+   // Flugrichtung der Enemies berechnen
+   for(var j = 0; j < _this.enemies.children.length; j++) {
+     _this.enemies.children[j].x = 2 * Math.cos((_this.enemies.children[j].rotation-90)/(Math.PI/4)) + _this.enemies.children[j].x;
+     _this.enemies.children[j].y = 2 * Math.sin((_this.enemies.children[j].rotation-90)/(Math.PI/4)) + _this.enemies.children[j].y;
+   }
+   _this.stage.update();
+};
+</pre>
+<p>Um zu überprüfen ob wir einen Gegner getroffen haben müssen wir einen so genannten Hittest machen. Diesen programmieren wir innerhalb der iteration über alle Bullets da wir für jede Bullet prüfen müssen. Wir machen einen for-schleife die durch alle Enemies iteriert und holen uns die punkte mit den wir dann prüfen über <code>_this.bullets.children[i].localToLocal(0,0, _this.enemies.children[j]);</code>. <code>localToLocal</code> Kümmert sich darum die richtigen Punkte zu ermitteln die wir dann unserm Hittest übergeben.
+Weiters müssen wir (genau wie bei unseren Bullets) die flurichtung der Enemies berechnen. Dazu verwenden wir die selbe Formel wie bei den Bullets doch multiplizieren nur mit 2 damit unsere Gegner sich langsamer bewegen.  </p>
+              </div>
+            </div>
+          </section>
+
+        <!--<section id="section-animation">
           <div class="row">
             <div class="col-lg-12">
               <h1 class="page-header">Animation <small>let's get things movin'</small></h1>
@@ -150,12 +412,40 @@ der Stage verwendet. Es wird von allen Browsern unterstützt.Um einen Tween aufz
 
             </div>
           </div>
+        </section>-->
+
+        <section id="section-about">
+          <h1 class="page-header">About</h1>
+          <p>Dieses Tutorial ist im Rahmen des INSY Unterrichts an der HTL Rennweg in Wien entstanden.</p>
+          <div class="row">
+            <div class="col-lg-4">
+              <h3>Georg Schelkshorn</h3>
+            </div>
+            <div class="col-lg-4">
+              <h3>Turan Sürücü</h3>
+            </div>
+            <div class="col-lg-4">
+              <h3>David Schiefer</h3>
+            </div>
+            <div class="col-lg-4">
+              <h3>Darko Zdravkovic</h3>
+            </div>
+            <div class="col-lg-4">
+              <h3>Tim Teufel</h3>
+            </div>
+            <div class="col-lg-4">
+              <h3>Tristan Neumayer</h3>
+            </div>
+          </div>
         </section>
 
       </div>
     <!-- /#page-content-wrapper -->
 
   </div>
+
+
+  <div id="close-game">&times;</div>
 
 
 
@@ -165,11 +455,38 @@ der Stage verwendet. Es wird von allen Browsern unterstützt.Um einen Tween aufz
   <!-- Bootstrap Core JavaScript -->
   <script src="js/bootstrap.min.js"></script>
 
+  <script src="../app/lib/easeljs-0.8.0.min.js"></script>
+  <script src="../app/lib/preloadjs-0.6.0.min.js"></script>
+  <script src="../app/lib/soundjs-0.6.0.min.js"></script>
+  <script src="../app/lib/tweenjs-0.6.0.min.js"></script>
+  <script src="../app/src/app.js"></script>
+
   <!-- TODO: mobile toggle -->
   <script>
   $("#menu-toggle").click(function(e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
+  });
+
+  $('#start-game').click(function() {
+    $('#close-game').fadeIn();
+    if ($('#game').length <= 0) {
+      $('body').append('<canvas id="game" width="800px" height="200px"><\/canvas>');
+      var canvas = document.getElementById('game');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      // Spiel Starten
+      new Game();
+      $('#game').fadeIn();
+    }
+  });
+
+  $('#close-game').click(function() {
+    $(this).fadeOut();
+    $('#game').fadeOut(function() {
+      $('#game').remove();
+      $('#game-src').remove();
+    });
   });
   </script>
 

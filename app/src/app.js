@@ -6,15 +6,12 @@ var Game = function game() {
   this.bullets = new createjs.Container();
   this.enemies = new createjs.Container();
 
-  this.score = new createjs.Text(this.points + " Punkte", "20px Arial", "#fff");
-  this.score.x = 10;
-  this.score.y = 10;
-  this.stage.addChild(this.score);
+  this.drawScore();
 
   this.canvasWidth = this.stage.canvas.width;
   this.canvasHeight = this.stage.canvas.height;
 
-  this.controller = new createjs.Bitmap("assets/controller.png");
+  this.controller = new createjs.Bitmap("../../app/assets/controller.png");
   this.controller.x = this.canvasWidth/2-32;
   this.controller.y = this.canvasHeight/2-32;
   this.controller.regX = 32;
@@ -37,6 +34,21 @@ var Game = function game() {
   setInterval(function(){
     _this.addEnemy();
   }, 3000);
+};
+
+Game.prototype.drawScore = function() {
+  // Rechteck als Hintergrund
+  var rect = new createjs.Graphics();
+  rect.beginFill(createjs.Graphics.getRGB(100, 100, 100));
+  rect.drawRect(0,0,100,40);
+  var background = new createjs.Shape(rect);
+  // Text den wir im Klassen scope verfügbar machen
+  // um diesen später aktualisieren zu können
+  this.score = new createjs.Text(this.points + " Punkte", "20px Arial", "#fff");
+  this.score.x = 10;
+  this.score.y = 10;
+  this.stage.addChild(background);
+  this.stage.addChild(this.score);
 };
 
 Game.prototype.handleKeys = function(ev) {
@@ -62,7 +74,7 @@ Game.prototype.handleKeys = function(ev) {
 };
 
 Game.prototype.shoot = function() {
-  var bullet = new createjs.Bitmap("assets/bullet.png");
+  var bullet = new createjs.Bitmap("../../app/assets/bullet.png");
   bullet.x = this.stage.canvas.width/2-32;
   bullet.y = this.stage.canvas.height/2-32;
   bullet.regX = 32;
@@ -72,7 +84,7 @@ Game.prototype.shoot = function() {
 };
 
 Game.prototype.addEnemy = function() {
-  var enemy = new createjs.Bitmap("assets/enemy.png");
+  var enemy = new createjs.Bitmap("../../app/assets/enemy.png");
   enemy.x = Math.floor(Math.random() * (this.stage.canvas.width - 100)) ;
   enemy.y = Math.floor(Math.random() * (this.stage.canvas.height - 100));
   enemy.rotation = Math.floor(Math.random()*360);
@@ -113,12 +125,4 @@ Game.prototype.update = function() {
      _this.enemies.children[j].y = 2 * Math.sin((_this.enemies.children[j].rotation-90)/(Math.PI/4)) + _this.enemies.children[j].y;
    }
    _this.stage.update();
-};
-
-window.onload = function() {
-  var canvas = document.getElementById('game');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  // Spiel Starten
-  new Game();
 };

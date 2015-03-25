@@ -20,5 +20,14 @@
         <script src="lib/soundjs-0.6.0.min.js"></script>
         <script src="lib/tweenjs-0.6.0.min.js"></script>
         <script src="src/app.js"></script>
+        <script>
+        window.onload = function() {
+          var canvas = document.getElementById('game');
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          // Spiel Starten
+          new Game();
+        };
+        </script>
     </body>
 </html>

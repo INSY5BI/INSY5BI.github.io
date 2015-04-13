@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Create.js Dokumentation | Bitmap Klasse</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,300italic,700' rel='stylesheet' type='text/css'>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="../css/simple-sidebar.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../highlight/styles/monokai_sublime.css">
+  <script src="../highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body data-spy="scroll" data-offset="0" data-target="#myScrollspy">
+
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav" id="myScrollspy">
+        <li class="sidebar-brand">
+          <a href="#">Methods</a>
+        </li>
+        <li><a href="addEventListener.html">addEventListener</a></li>
+        <li><a href="cache.html">cache</a></li>
+        <li class="active"><a href="clone.html">clone</a></li>
+        <li><a href="dispatchEvent.html">dispatchEvent</a></li>
+        <li><a href="draw.html">draw</a></li>
+        <li><a href="getBounds.html">getBounds</a></li>
+        <li><a href="getCacheDataURL.html">getCacheDataURL</a></li>
+        <li><a href="getConcatenatedDisplayProps.html">getConcatenatedDisplayProps</a></li>
+        <li><a href="getConcatenatedMatrix.html">getConcatenatedMatrix</a></li>
+        <li><a href="getMatrix.html">getMatrix</a></li>
+        <li><a href="getTransformedBounds.html">getTransformedBounds</a></li>
+        <li><a href="globalToLocal.html">globalToLocal</a></li>
+        <li><a href="hasEventListener.html">hasEventListener</a></li>
+        <li><a href="hitTest.html">hitTest</a></li>
+        <li><a href="isVisible.html">isVisible</a></li>
+        <li><a href="localToGlobal.html">localToGlobal</a></li>
+        <li><a href="localToLocal.html">localToLocal</a></li>
+        <li><a href="off.html">off</a></li>
+        <li><a href="on.html">on</a></li>
+        <li><a href="removeAllEventListeners.html">removeAllEventListeners</a></li>
+        <li><a href="removeEventListener.html">removeEventListener</a></li>
+        <li><a href="set.html">set</a></li>
+        <li><a href="setBounds.html">setBounds</a></li>
+        <li><a href="setTransform.html">setTransform</a></li>
+        <li><a href="toString.html">toString</a></li>
+        <li><a href="uncache.html">uncache</a></li>
+        <li><a href="updateCache.html">updateCache</a></li>
+        <li><a href="updateContext.html">updateContext</a></li>
+        <li><a href="willTrigger.html">willTrigger</a></li>
+        <li class="sidebar-brand">
+          <a href="#">Properties</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <img id="meteor" src="../enemy.png">
+      <section id="section-intro">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="page-header">Bitmap Klasse</h1>
+
+          </div>
+        </div>
+      </section>
+
+      <section id="section-basics">
+        <div class="row">
+          <div class="col-lg-12">
+            <script>
+ 				function init(){
+          stage = new createjs.Stage(document.getElementById("myCanvas"));
+          createjs.Ticker.setFPS(30);
+          createjs.Ticker.addEventListener("tick",updateStage,false);
+          start();
+        }
+
+        function updateStage(){
+          stage.update();
+        }
+        
+        function start(){
+          var myImg = new Image();
+          myImg.src = "thumbnail.png";
+          myImg.addEventListener("load", function(){
+            var bitmap = new createjs.Bitmap(myImg);
+            console.log("Loaded");
+            bitmap.x = 10;
+            stage.addChild(bitmap);
+            var clone = bitmap.clone();
+            clone.x = 100;
+            clone.y = 50;
+            stage.addChild(clone);
+            console.log(bitmap);
+            console.log(clone);
+          },true);
+        }
+
+        window.addEventListener("load",init,false);
+            </script>
+            <h3>cache</h3>
+            <p>returns true</p>
+            <canvas id="myCanvas" width="600" height="400" style="border: 3px solid black;"></canvas>
+          </div>
+          <div class="col-lg-12">
+            <pre>
+            <code class="javascript">var myImg = new Image();
+myImg.src = "thumbnail.png";
+myImg.addEventListener("load", function(){
+  var bitmap = new createjs.Bitmap(myImg);
+  console.log("Loaded");
+  bitmap.x = 10;
+  stage.addChild(bitmap);
+  var clone = bitmap.clone();
+  clone.x = 100;
+  clone.y = 50;
+  stage.addChild(clone);
+  console.log(bitmap);
+  console.log(clone);
+},true);
+            </code>
+            </pre>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+
+
+  <div id="close-game">&times;</div>
+
+
+
+  <!-- jQuery Version 1.11.1 -->
+  <script src="../js/jquery.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../js/bootstrap.min.js"></script>
+
+  <script src="../../app/lib/easeljs-0.8.0.min.js"></script>
+  <script src="../../app/lib/preloadjs-0.6.0.min.js"></script>
+  <script src="../../app/lib/soundjs-0.6.0.min.js"></script>
+  <script src="../../app/lib/tweenjs-0.6.0.min.js"></script>
+  <script src="../../app/src/app.js"></script>
+
+  <!-- TODO: mobile toggle -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+
+    $('#start-game').click(function() {
+      $('#close-game').fadeIn();
+      if ($('#game').length <= 0) {
+        $('body').append('<canvas id="game" width="800px" height="200px"><\/canvas>');
+        var canvas = document.getElementById('game');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      // Spiel Starten
+      new Game();
+      $('#game').fadeIn();
+    }
+  });
+
+    $('#close-game').click(function() {
+      $(this).fadeOut();
+      $('#game').fadeOut(function() {
+        $('#game').remove();
+        $('#game-src').remove();
+      });
+    });
+  </script>
+
+</body>
+
+</html>

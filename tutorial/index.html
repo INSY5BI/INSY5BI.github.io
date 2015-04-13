@@ -76,7 +76,7 @@
               <h1 class="page-header">Intro <small>was erwartet mich hier?</small></h1>
               <p>Hallo und herzlich willkommen zu unserem Tutorial.</p>
 
-<p>Unser Spiel ähnelt sich dem klassischem Space Invader, indem ein Spaceship Meteoriten abschießt die zufällig auf einem zu fliegen und mit dem Controller kann man durch den Weltall fliegen.
+<p>Unser Spiel ähnelt sich dem klassischen Space Invader, indem ein Spaceship Meteoriten abschießt die zufällig auf einem zu fliegen und mit dem Controller kann man durch den Weltall fliegen.
 Wir haben unser Spiel mittels der CreateJs-Suite zum Leben erweckt.</p>
 
 
@@ -89,13 +89,16 @@ Wir stellen euch kurz vor, was mit CreateJS, das als Open-Source bei GitHub verf
 <p><b>SoundJS</b>  ist der dritte Teil von CreateJS, der eine JavaScript-API für das vereinfachte Bereitstellen von Audio in Spielen und interaktiven Websites bietet.</p>
 <p><b>PreloadJS</b>  erlaubt das Vorladen von Inhalteselementen wie Bildern, Sounds, Skripten oder anderen Daten mit Statusanzeige, mehrfachen Verbindungen für gleichzeitiges Laden und mehr.</p>
         <div class="row">
-          <div class="col-lg-8 col-lg-offset-2">
+          <div class="col-lg-12 col-lg-offset-0">
             <div class="btn-group btn-group-justified" id="action-buttons" role="group" aria-label="...">
               <div class="btn-group" role="group">
                 <button type="button" class="btn btn-lg btn-primary" id="start-game"><i class="glyphicon glyphicon-eye-open"></i> Resulat ansehen</button>
               </div>
               <div class="btn-group" role="group">
                 <a href="https://github.com/INSY5BI/INSY5BI.github.io/"<button type="button" class="btn btn-lg btn-default"><img src="http://www.turshija.com/signature/github.png" width="16px"> Github</button></a>
+              </div>
+              <div class="btn-group" role="group">
+                <a href="http://INSY5BI.github.io/doku/index.html"<button type="button" class="btn btn-lg btn-info">Dokumentation</button></a>
               </div>
             </div>
           </div>
@@ -129,7 +132,7 @@ window.onload = function {
           Eine Stage ist wie eine Bühne – auf ihr werden alle Elemente positioniert. </p>
           So wird eine Stage erstellt:
           <pre><code class="javascript">new createjs.Stage("game");</code></pre>
-          <p>Hierbei wird diese in einem Canvas „erstellt. Dies ist wichtig, denn ohne Canvas funktioniert es nicht. Hier ein Beispiel wie das zugehörige Canvas-Objekt aussehen könnte.</p>
+          <p>Hierbei wird diese in einem Canvas erstellt. Dies ist wichtig, denn ohne Canvas funktioniert es nicht. Hier ein Beispiel wie das zugehörige Canvas-Objekt aussehen könnte.</p>
           <pre>&#60;canvas id="game" width="500" height="500">&#60;/canvas></pre>
           <p>Bevor wir nun weitermachen werden wir eine Stage im Konstruktor unserer Game Klasse definieren. Das sieht dann so aus: </p>
           <pre>

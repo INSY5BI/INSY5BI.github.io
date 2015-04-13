@@ -1,0 +1,66 @@
+body {
+  font-family: 'Robot', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, code {
+  font-family: 'Robot', sans-serif;
+}
+
+#action-buttons {
+  padding: 50px;
+}
+
+section:nth-child(odd) {
+  background: #f1f1f1;
+}
+
+section {
+  padding: 20px;
+  padding-right: 25%;
+}
+
+
+#section-intro {
+  color: #f2f2f2;
+  background: #333;
+}
+
+#meteor {
+  position: fixed;
+  right: 10px;
+}
+
+.btn-primary {
+  background: #2a8cba;
+  border-color: #634f68;
+  color: #332836;
+}
+
+.btn-primary:hover {
+  background: #634f68;
+  border-color: #634f68;
+  color: #ffffff;
+}
+
+#game {
+  display: none;
+  background: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100001;
+}
+
+#close-game {
+  display: none;
+  position: fixed;
+  top: -30px;
+  right: 10px;
+  font-size: 100px;
+  z-index: 100002;
+  color: rgba(255, 255, 255, .4);
+}
+
+#close-game:hover {
+  cursor: pointer;
+}

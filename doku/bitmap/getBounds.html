@@ -46,7 +46,7 @@
         <li><a href="addEventListener.html">addEventListener</a></li>
         <li><a href="cache.html">cache</a></li>
         <li><a href="clone.html">clone</a></li>
-        <li><a href="dispatchEvent.html">dispatchEvent</a></li>
+        <li class="active"><a href="dispatchEvent.html">dispatchEvent</a></li>
         <li><a href="draw.html">draw</a></li>
         <li><a href="getBounds.html">getBounds</a></li>
         <li><a href="getCacheDataURL.html">getCacheDataURL</a></li>
@@ -55,7 +55,7 @@
         <li><a href="getMatrix.html">getMatrix</a></li>
         <li><a href="getTransformedBounds.html">getTransformedBounds</a></li>
         <li><a href="globalToLocal.html">globalToLocal</a></li>
-        <li class="active"><a href="hasEventListener.html">hasEventListener</a></li>
+        <li><a href="hasEventListener.html">hasEventListener</a></li>
         <li><a href="hitTest.html">hitTest</a></li>
         <li><a href="isVisible.html">isVisible</a></li>
         <li><a href="localToGlobal.html">localToGlobal</a></li>
@@ -95,48 +95,41 @@
         <div class="row">
           <div class="col-lg-12">
             <script>
-              var stage;
+ 				var stage;
 
-              function init()
-              {
-                stage = new createjs.Stage(document.getElementById("myCanvas"));
-                createjs.Ticker.setFPS(30);
-                createjs.Ticker.addEventListener("tick",updateStage,false);
-                start();
-              }
+        function init()
+        {
+          stage = new createjs.Stage(document.getElementById("myCanvas"));
+          createjs.Ticker.setFPS(30);
+          createjs.Ticker.addEventListener("tick",updateStage,false);
+          start();
+        }
 
-              function updateStage()
-              {
-                stage.update();
-              }
-              function start()
-              {
-                var myImg = new Image();
-                myImg.src = "thumbnail.png";
-                myImg.addEventListener("load",function()
-                {
+        function updateStage()
+        {
+          stage.update();
+        }
+        function start()
+        {
+          var myImg = new Image();
+          myImg.src = "thumbnail.png";
+          myImg.addEventListener("load",function(){
+            console.log("Loaded");
+            var bitmap = new createjs.Bitmap(myImg);
+            bitmap.x = 100;
+            stage.addChild(bitmap);
+            var bounds = bitmap.getBounds();
 
-                  var bitmap = new createjs.Bitmap(myImg);
-                  stage.addChild(bitmap);
+            // Setting bounds does not change bitmap position, width or height)
+            bitmap.setBounds(bounds.x-10, bounds.y-10, bounds.width-10, bounds.height-10);
 
-                  bitmap.x = 100;
-                  bitmap.y = 100;
+            console.log(bitmap.getBounds());
+          },true);
+        }
 
-                  stage.update();
-
-                  bitmap.addEventListener("click",function() {
-                    bitmap.rotation += 35;
-                    bitmap.alpha = 0.5;
-                    stage.update(); 
-                  });
-
-                  console.log(bitmap.hasEventListener("click"));
-                }, true);
-              }
-
-              window.addEventListener("load",init,false);
+        window.addEventListener("load",init,false);
             </script>
-            <h3>hasEventListener</h3>
+            <h3>dispatchEvent</h3>
             <p>returns true</p>
             <canvas id="myCanvas" width="600" height="400" style="border: 3px solid black;"></canvas>
           </div>
@@ -144,25 +137,18 @@
             <pre>
             <code class="javascript">var myImg = new Image();
 myImg.src = "thumbnail.png";
-myImg.addEventListener("load",function()
-{
-
+myImg.addEventListener("load",function(){
+  console.log("Loaded");
   var bitmap = new createjs.Bitmap(myImg);
-  stage.addChild(bitmap);
-
   bitmap.x = 100;
-  bitmap.y = 100;
+  stage.addChild(bitmap);
+  var bounds = bitmap.getBounds();
 
-  stage.update();
+  // Setting bounds does not change bitmap position, width or height)
+  bitmap.setBounds(bounds.x-10, bounds.y-10, bounds.width-10, bounds.height-10);
 
-  bitmap.addEventListener("click",function() {
-    bitmap.rotation += 35;
-    bitmap.alpha = 0.5;
-    stage.update(); 
-  });
-
-  console.log(bitmap.hasEventListener("click"));
-}, true);
+  console.log(bitmap.getBounds());
+},true);
             </code>
             </pre>
           </div>

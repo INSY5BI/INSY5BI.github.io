@@ -20,6 +20,10 @@
   <link href="css/simple-sidebar.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="highlight/styles/monokai_sublime.css">
+	<script src="highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -106,25 +110,25 @@ Wir stellen euch kurz vor, was mit CreateJS, das als Open-Source bei GitHub verf
               <h1 class="page-header">Basics <small></small></h1>
               <p>Bevor wir nun beginnen können unser Spiel zu programieren benötigen wir ein paar files um create.js zum laufen zu bringen.
                 Nachdem du die <a href="http://www.createjs.com/Downloads" class="btn btn-primary">Files</a> heruntergeladen hast plaziere sie in einem <code>lib/</code> ordner und binde Sie mit dem <code>&#60;script></code> tag ein.</p>
-              <pre>
-&#60;script src="lib/easeljs-0.8.0.min.js">&#60;/script>
+                <pre><span class="file">index.html</span>
+                  <code class="html">&#60;script src="lib/easeljs-0.8.0.min.js">&#60;/script>
 &#60;script src="lib/preloadjs-0.6.0.min.js">&#60;/script>
 &#60;script src="lib/soundjs-0.6.0.min.js">&#60;/script>
-&#60;script src="lib/tweenjs-0.6.0.min.js">&#60;/script></pre>
+&#60;script src="lib/tweenjs-0.6.0.min.js">&#60;/script></code></pre>
               <p>Nun erzeugen wir noch ein file <code>game.js</code> das wir ebenfalls laden. In diesem file möchten wir unsere Game Klasse starten nachdem das window objekt fertig geladen hat.</p>
-              <pre>
-var Game = function game() {
+              <pre><span class="file">game.js</span>
+                <code class="javascript">var Game = function game() {
   console.log("SPIEL GESTARTET");
 };
 
 window.onload = function {
   new Game();
-};</pre>
+};</code></pre>
 
               <p>Nun werden wir uns ansehen was eigentlich eine Stage ist und wie man Elemente darauf positionieren kann.
           Eine Stage ist wie eine Bühne – auf ihr werden alle Elemente positioniert. </p>
           So wird eine Stage erstellt:
-          <pre>new createjs.Stage("game");</pre>
+          <pre><code class="javascript">new createjs.Stage("game");</code></pre>
           <p>Hierbei wird diese in einem Canvas „erstellt. Dies ist wichtig, denn ohne Canvas funktioniert es nicht. Hier ein Beispiel wie das zugehörige Canvas-Objekt aussehen könnte.</p>
           <pre>&#60;canvas id="game" width="500" height="500">&#60;/canvas></pre>
           <p>Bevor wir nun weitermachen werden wir eine Stage im Konstruktor unserer Game Klasse definieren. Das sieht dann so aus: </p>

@@ -48,12 +48,12 @@
         <li><a href="clone.html">clone</a></li>
         <li><a href="dispatchEvent.html">dispatchEvent</a></li>
         <li><a href="draw.html">draw</a></li>
-        <li class="active"><a href="getBounds.html">getBounds</a></li>
+        <li><a href="getBounds.html">getBounds</a></li>
         <li><a href="getCacheDataURL.html">getCacheDataURL</a></li>
         <li><a href="getConcatenatedDisplayProps.html">getConcatenatedDisplayProps</a></li>
         <li><a href="getConcatenatedMatrix.html">getConcatenatedMatrix</a></li>
         <li><a href="getMatrix.html">getMatrix</a></li>
-        <li><a href="getTransformedBounds.html">getTransformedBounds</a></li>
+        <li class="active"><a href="getTransformedBounds.html">getTransformedBounds</a></li>
         <li><a href="globalToLocal.html">globalToLocal</a></li>
         <li><a href="hasEventListener.html">hasEventListener</a></li>
         <li><a href="hitTest.html">hitTest</a></li>
@@ -96,40 +96,43 @@
           <div class="col-lg-12">
             <script>
  				var stage;
-
+        var pictures = [];
+        var listeners = [];
+        
         function init()
         {
-          stage = new createjs.Stage(document.getElementById("myCanvas"));
-          createjs.Ticker.setFPS(30);
-          createjs.Ticker.addEventListener("tick",updateStage,false);
-          start();
+            stage = new createjs.Stage(document.getElementById("myCanvas"));
+            createjs.Ticker.setFPS(30);
+            createjs.Ticker.addEventListener("tick",updateStage,false);
+            start();
         }
 
         function updateStage()
         {
-          stage.update();
+            stage.update();
         }
         function start()
         {
-          var myImg = new Image();
-          myImg.src = "thumbnail.png";
-          myImg.addEventListener("load",function(){
-            console.log("Loaded");
-            var bitmap = new createjs.Bitmap(myImg);
-            bitmap.x = 100;
-            stage.addChild(bitmap);
-            var bounds = bitmap.getBounds();
-
-            // Setting bounds does not change bitmap position, width or height)
-            bitmap.setBounds(bounds.x-10, bounds.y-10, bounds.width-10, bounds.height-10);
-
-            console.log(bitmap.getBounds());
-          },true);
+            var myImg = new Image();
+            myImg.src = "thumbnail.png";
+            
+            myImg.addEventListener("load",function()
+            {
+                var bitmap = new createjs.Bitmap(myImg);
+                bitmap.x = 200;
+                bitmap.y = 200;
+                stage.addChild( bitmap );
+                
+                var bounds = bitmap.getTransformedBounds();
+                console.log(bounds);
+            
+            },true);
+            
         }
 
         window.addEventListener("load",init,false);
             </script>
-            <h3>getBounds</h3>
+            <h3>getTransformedBounds</h3>
             <p>returns true</p>
             <canvas id="myCanvas" width="600" height="400" style="border: 3px solid black;"></canvas>
           </div>
@@ -137,17 +140,17 @@
             <pre>
             <code class="javascript">var myImg = new Image();
 myImg.src = "thumbnail.png";
-myImg.addEventListener("load",function(){
-  console.log("Loaded");
-  var bitmap = new createjs.Bitmap(myImg);
-  bitmap.x = 100;
-  stage.addChild(bitmap);
-  var bounds = bitmap.getBounds();
 
-  // Setting bounds does not change bitmap position, width or height)
-  bitmap.setBounds(bounds.x-10, bounds.y-10, bounds.width-10, bounds.height-10);
+myImg.addEventListener("load",function()
+{
+    var bitmap = new createjs.Bitmap(myImg);
+    bitmap.x = 200;
+    bitmap.y = 200;
+    stage.addChild( bitmap );
+    
+    var bounds = bitmap.getTransformedBounds();
+    console.log(bounds);
 
-  console.log(bitmap.getBounds());
 },true);
             </code>
             </pre>

@@ -43,9 +43,9 @@
         <li class="sidebar-brand">
           <a href="#">Methods</a>
         </li>
-        <li><a href="addEventListener.html">addEventListener</a></li>
+        <li class="active"><a href="addEventListener.html">addEventListener</a></li>
         <li><a href="cache.html">cache</a></li>
-        <li class="active"><a href="clone.html">clone</a></li>
+        <li><a href="clone.html">clone</a></li>
         <li><a href="dispatchEvent.html">dispatchEvent</a></li>
         <li><a href="draw.html">draw</a></li>
         <li><a href="getBounds.html">getBounds</a></li>
@@ -95,56 +95,69 @@
         <div class="row">
           <div class="col-lg-12">
             <script>
- 				function init(){
-          stage = new createjs.Stage(document.getElementById("myCanvas"));
-          createjs.Ticker.setFPS(30);
-          createjs.Ticker.addEventListener("tick",updateStage,false);
-          start();
-        }
+ 				var stage;
 
-        function updateStage(){
-          stage.update();
-        }
-        
-        function start(){
-          var myImg = new Image();
-          myImg.src = "thumbnail.png";
-          myImg.addEventListener("load", function(){
-            var bitmap = new createjs.Bitmap(myImg);
-            console.log("Loaded");
-            bitmap.x = 10;
-            stage.addChild(bitmap);
-            var clone = bitmap.clone();
-            clone.x = 100;
-            clone.y = 50;
-            stage.addChild(clone);
-            console.log(bitmap);
-            console.log(clone);
-          },true);
-        }
+				function init(){
+					stage = new createjs.Stage(document.getElementById("myCanvas"));
+					createjs.Ticker.setFPS(30);
+					createjs.Ticker.addEventListener("tick",updateStage,false);
+					start();
+				}
 
-        window.addEventListener("load",init,false);
+				function updateStage(){
+					stage.update();
+				}
+				function start(){
+					var myImg = new Image();
+					myImg.src = "thumbnail.png";
+					myImg.addEventListener("load",function(){
+						 
+						var bitmap = new createjs.Bitmap(myImg);
+						stage.addChild(bitmap);
+
+						bitmap.x = 100;
+						bitmap.y = 100;
+						 
+						stage.update();
+
+						bitmap.addEventListener("click",function() {
+							bitmap.rotation += 35;
+							bitmap.alpha = 0.5;
+							stage1.update(); 
+						});
+
+						console.log(bitmap.hasEventListener("click"));
+					}, true);
+				}
+
+				window.addEventListener("load",init,false);
             </script>
-            <h3>clone</h3>
-            <p>returns true</p>
+            <h3>addEventListener</h3>
+            <p>Fügt einen EventListener hinzu.</p>
             <canvas id="myCanvas" width="600" height="400" style="border: 3px solid black;"></canvas>
           </div>
           <div class="col-lg-12">
             <pre>
-            <code class="javascript">var myImg = new Image();
+            <code class="javascript">//addEventListener and hasEventListener
+var myImg = new Image();
 myImg.src = "thumbnail.png";
-myImg.addEventListener("load", function(){
-  var bitmap = new createjs.Bitmap(myImg);
-  console.log("Loaded");
-  bitmap.x = 10;
-  stage.addChild(bitmap);
-  var clone = bitmap.clone();
-  clone.x = 100;
-  clone.y = 50;
-  stage.addChild(clone);
-  console.log(bitmap);
-  console.log(clone);
-},true);
+myImg.addEventListener("load",function()			
+     {			
+	var bitmap = new createjs.Bitmap(myImg);			
+    stage.addChild(bitmap);			
+			
+    bitmap.x = 100;			
+    bitmap.y = 100;			
+     			
+    stage.update();			
+			
+    bitmap.addEventListener("click",function() {			
+        bitmap.rotation += 35;			
+        bitmap.alpha = 0.5;			
+        stage.update(); 			
+		});			
+		
+	}, true);
             </code>
             </pre>
           </div>

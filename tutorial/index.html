@@ -52,13 +52,13 @@
           <a href="#section-basics">Basics</a>
         </li>
         <li>
+          <a href="#section-animation">Animation</a>
+        </li>
+        <li>
           <a href="#section-controller">Kontroller</a>
         </li>
         <li>
           <a href="#section-gegner">Gegner</a>
-        </li>
-        <li>
-          <a href="#section-animation">(Animation)</a>
         </li>
         <li>
           <a href="#section-about">About</a>
@@ -133,19 +133,17 @@ window.onload = function {
           So wird eine Stage erstellt:
           <pre><code class="javascript">new createjs.Stage("game");</code></pre>
           <p>Hierbei wird diese in einem Canvas erstellt. Dies ist wichtig, denn ohne Canvas funktioniert es nicht. Hier ein Beispiel wie das zugehörige Canvas-Objekt aussehen könnte.</p>
-          <pre>&#60;canvas id="game" width="500" height="500">&#60;/canvas></pre>
+          <pre><code class="html">&#60;canvas id="game" width="500" height="500">&#60;/canvas></code></pre>
           <p>Bevor wir nun weitermachen werden wir eine Stage im Konstruktor unserer Game Klasse definieren. Das sieht dann so aus: </p>
-          <pre>
-          var Game = function game() {
-              console.log("SPIEL GESTARTET");
+          <pre><code class="javascript">var Game = function game() {
+  console.log("SPIEL GESTARTET");
 
-              this.stage = new createjs.Sage("game");
-          };</pre>
+  this.stage = new createjs.Sage("game");
+};</code></pre>
           <p>Nun haben wir eine Stage, aber da fehlen noch einige Dinge – Wie zum Beispiel:
 Wie oft soll diese Stage sich updaten? Also einfach gesagt muss die Stage wissen wie oft und ob Sie sich aktualisieren soll. Um dies zu realisieren fügen wir einen Ticker hinzu. Dies ist wichtig denn ansonsten würde sich nichts auf unserer Stage bewegen  - und dass wollen wir ja nicht!</p>
 <p>Man sieht dass wir eine Framerate von 30 gewählt haben. Doch zurzeit weiß die Stage nur das es 30FPS sind und leider noch nicht WIE sie sich updaten soll – dieser Stage muss man auch alles sagen ;)</p>
-<pre>
-var Game = function game() {
+<pre><code class="javascript">var Game = function game() {
     var _this = this;
     console.log("SPIEL GESTARTET");
 
@@ -160,7 +158,7 @@ var Game = function game() {
 Game.protoype.update = function update() {
   // -> wird 30x in der Sekunden aufgerufen
   this.stage.update();
-};</pre>
+};</code></pre>
 
             <p>Wir haben auch einen EventListener hinzugefügt. Dieser überprüft ob Dinge passieren – diese können alles Mögliche sein, vom Mausklick bis zum einfachen Laden der Website. In unserem Fall führt er die Funktion <code>Game.update();</code> bei jedem „tick“ aus, also 30 in der Sekunde. Um zu sehen was auf der Stage passiert werden wir in der Funktion die Stage „updaten“. Dazu nutzen wir die bereits vorhandene Methode <code>stage.update();</code>. Diese funktion wenden wir auf unsere erstellt Stage an. </p>
 
@@ -172,102 +170,147 @@ Man kann sich dieses Modell wie eine Zwiebel vorstellen – Außen die Stage, in
 Wir werden nun Schritt für Schritt etwas auf die Stage bringen.</p>
 
             <p>Nun wollen wir nun unsere ersten Objekte, in CreateJS sogenannte Graphics, hinzufügen. Dazu fügen wir eine variable hinzu die unseren Punktestand speichert, und eine funktion die den Punktestand auf die Stage zeichnet. Wie wir gerade erklärt, dürfen wir die Graphic nicht direkt zur stagen hinzufügen sondern müssen diese in einen Container, in eine Shape verpacken.</p>
-            <pre>
-              var Game = function game() {
-                  var _this = this;
-                  console.log("SPIEL GESTARTET");
+            <pre><code class="javascript">var Game = function game() {
+    var _this = this;
+    console.log("SPIEL GESTARTET");
 
-                  this.stage = new createjs.Sage("game");
+    this.stage = new createjs.Sage("game");
 
-                  this.points = 0;
-                  this.drawScore();
+    this.points = 0;
+    this.drawScore();
 
-                  createjs.Ticker.setFPS(30);
-                  createjs.Ticker.addEventListener("tick", function() {
-                    _this.update();
-                  },false);
-              };
+    createjs.Ticker.setFPS(30);
+    createjs.Ticker.addEventListener("tick", function() {
+      _this.update();
+    },false);
+};
 
-              Game.prototype.drawScore = function() {
-                // Rechteck als Hintergrund
-                var rect = new createjs.Graphics();
-                rect.beginFill(createjs.Graphics.getRGB(100, 100, 100));
-                rect.drawRect(0,0,100,40);
-                var background = new createjs.Shape(rect);
-                // Text den wir im Klassen scope verfügbar machen
-                // um diesen später aktualisieren zu können
-                this.score = new createjs.Text(this.points + " Punkte", "20px Arial", "#fff");
-                this.score.x = 10;
-                this.score.y = 10;
-                this.stage.addChild(background);
-                this.stage.addChild(this.score);
-              };
-            </pre>
+Game.prototype.drawScore = function() {
+  // Rechteck als Hintergrund
+  var rect = new createjs.Graphics();
+  rect.beginFill(createjs.Graphics.getRGB(100, 100, 100));
+  rect.drawRect(0,0,100,40);
+  var background = new createjs.Shape(rect);
+  // Text den wir im Klassen scope verfügbar machen
+  // um diesen später aktualisieren zu können
+  this.score = new createjs.Text(this.points + " Punkte", "20px Arial", "#fff");
+  this.score.x = 10;
+  this.score.y = 10;
+  this.stage.addChild(background);
+  this.stage.addChild(this.score);
+};</code></pre>
           <p>Wie man sehen kann haben wir die Graphic „rect“ erzeugt und dieses mit einem wunderschönen Grau versehen. Danach verwenden wir die Funktion drawRect um – was sonst – ein Rechteck mit den Abmessungen 100x40 zu zeichnen.</p>
           <p>Anschließend haben wir unsere Graphic in unser Shape „background“ gegeben und danach diese Shape auf die Stage gebracht. Auf die Stage bringen wir Shapes mit addChild. Danach Fügen wir einen text mit der <code>createjs.Text()</code> funktion hinzu. Hier kann man den Text sowie styling parameter angeben um seinen Text zu gestalten. Wir haben in diesem Abschnitt gelernt wie wir Stages, Graphics, Shapes und Text erzeugen. Des Weiteren haben wir einen kurzen Ausflug in Updates und EventListener gemacht die wir im nächsten abschnitt verwenden werden um Unseren Kontroller leben ein zu hauchen.</p>
             </div>
           </div>
         </section>
 
+        <section id="section-animation">
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 class="page-header">Animation</h1>
+              <p>Dieses Kapitel wird animationen, so wie wir sie in "Basics" bereits verwendet haben genauer erklären so wie eine alternative zu Zeitbasierenden animationen zeigen (diese werden im laufe des Tutorials jedoch nicht genutzt).
+              <p>Eine Animation verändert, über einen Zeitraum, die visuellen Eigenschaften eines Objektes. In der
+                Programmierung werden dafür einige Paramter defieniert wir z.B.: <code>setInterval()</code>, <code>setTimeout()</code>, oder
+                <code>requestAnimationFrame()</code>. Wichtig ist es die Funktion <code>stage.update()</code> aufzurufen die das Ganze dann
+                anzeigt.</p>
+                <pre><code class="javascript">circle.x = circle.x + 3;
+if (circle.x > stage.canvas.width) { circle.x = 0; }</code></pre>
+              <h2>Ticker();</h2>
+              <p>Der Ticker ist eine Klasse und bietet ein statisches Interface um einen Tick an verschiedene Objekte zu schicken.
+                Dafür brauchen wir einen event listener. Mit <code>addEventListener("tick", handler);</code> können wir diesen hinzufügen.
+                Dieser listener kann eine Funktion oder einem mit dem handleEvent, definiertes Objekt.</p>
+                <pre><code class="javascript">createjs.Ticker.addEventListener("tick", tick);
+function tick() { console.log("TICK!!!"); }</code></pre>
+
+              <p>Im unten stehenden Code kann man die framerate ändern.</p>
+              <pre><code class="javascript">// these are equivalent, 1000ms / 40fps = 25ms
+createjs.Ticker.setInterval(25);
+createjs.Ticker.setFPS(40);</code></pre>
+
+              <h2>Zeit basierende Animationen</h2>
+              <p>Diese Animationen sind unabhängig von der frame rate und ermöglicht ihnen die framrate dynamisch zu verändern.
+                Der Ticker spielt hier eine große Rolle.</p>
+<pre><code class="javascript">function tick(event) {
+    // move 100 pixels per second (elapsedTimeInMS / 1000msPerSecond * pixelsPerSecond):
+    circle.x += event.delta/1000*100;
+    // this will log a steadily increasing value:
+    console.log("total time: "+createjs.Ticker.getTime());
+}</code></pre>
+
+              <h2>Tween.js</h2>
+              <p>Es gibt einige tweening Klassen  die das Animieren vereinfachen wie z.B.: TweenJS & TweenLite
+TweenJS ist eine Javascript Bibliothek und verwendet stage.update() nicht, weil es eine eigene Methode zum refreshen
+der Stage verwendet. Es wird von allen Browsern unterstützt.Um einen Tween aufzurufen verwendet man folgender Zeile
+ <code>(Tween(target, [props], [pluginData]);</code>.</p>
+ <ul><li>Target = Das Zielobjekt welches getweent wird.</li>
+<li>Props = Die Einstellungen die man dem Tween zuordnen möchte.</li>
+  <ul><li>loop: sets the loop property on this tween.</li>
+  <li>useTicks: uses ticks for all durations instead of milliseconds.</li>
+  <li>ignoreGlobalPause: sets the ignoreGlobalPause property on this tween.</li>
+  <li>override: if true, Tween.removeTweens(target) will be called to remove any other tweens with the same target.</li>
+  <li>paused: indicates whether to start the tween paused.</li>
+  <li>position: indicates the initial position for this tween.</li>
+  <li>onChange: specifies a listener for the "change" event.</li></ul>
+<li>pluginData = Ein Objekt welches Daten enthält für die Installation von Plug-Ins.</li>
+</ul>
+</pre>
+
+            </div>
+          </div>
+        </section>
+
+
         <section id="section-controller">
           <div class="row">
             <div class="col-lg-12">
-              <h1 class="page-header">Kontroller <small>let's get things movin'</small></h1>
+              <h1 class="page-header">Kontroller</h1>
               <p>Wir beginnen damit unsere Figur einzubinden. Da wir ein statisches Bild haben und keine Animation reicht dafür ein Bitmap und es wird kein Sprite, dazu später mehr, benötigt.</p>
               <p>Wir möchten nun das Bild <code>assets/controller.png</code> loaden, dazu Benötigen wir die Bitmap Classe. Für den Controller ezeugen wir einen weiter Funktion <code>Game.drawController</code>.</p>
-              <pre>
-                Game.prototype.drawController = function() {
-                  this.controller = new createjs.Bitmap("assets/controller.png");
-                  this.controller.x = this.stage.canvas.width/2-32;
-                  this.controller.y = this.stage.canvas.height/2-32;
-                  this.controller.regX = 32;
-                  this.controller.regY = 32;
-                  this.stage.addChild(this.controller);
-                };
-              </pre>
+              <pre><code class="javascript">Game.prototype.drawController = function() {
+  this.controller = new createjs.Bitmap("assets/controller.png");
+  this.controller.x = this.stage.canvas.width/2-32;
+  this.controller.y = this.stage.canvas.height/2-32;
+  this.controller.regX = 32;
+  this.controller.regY = 32;
+  this.stage.addChild(this.controller);
+};</code></pre>
               <p>Nachdem wir das Bild geladen haben möchten wir den Controller nun in der Mitte plazieren. Dazu verschieben wir das 64x64px große Objekt in die mitte das Canvas und ziehen die hälte des Objects ab um exakt in der Mitte zu sein. Da wir später unseren Controller rotieren möchten müssen wir auch den mittelpunkt richtig setzen, da sich der Kontroller sonst um den Punkt links oben drehen würde. Mit <code>regX</code> und <code>regY</code> verschiebt den Mittelpunkt relativ zu dem punkt an dem das Objekt plaziert ist</p>
               <p>Nun möchten wir unseren Kontroller nach links und rechts rotieren wenn der Benutzer auf die Pfeiltasten clickt. Dazu fügen wir zu unserm Konstructor einen Event Listner hinzu der auf <code>keyPress</code> reagiert und dann eine funktion <code></code> ausführt die sich dann um die rotation kümmert.</p>
-              <pre>
-                var _this = this;
-                document.onkeydown = function(ev) {
-                  _this.handleKeys(ev);
-                };</pre>
-              <pre>
-                Game.prototype.handleKeys = function(ev) {
-                  var _this = this;
-                  switch(ev.keyCode) {
-                    case 37: // Linke Pfeiltaste
-                      if (_this.controller.rotation < 0) {
-                        _this.controller.rotation = 360;
-                      }
-                      _this.controller.rotation -= 10;
-                      break;
-                    case 39: // Rechte Pfeiltaste
-                      if (_this.controller.rotation > 360) {
-                        _this.controller.rotation = 0;
-                      }
-                      _this.controller.rotation += 10;
-                      break;
-                    case 32: // SPace
-                      // -> hier möchten wir später schießen können
-                      break;
-                  }
-                };
-              </pre>
+              <pre><code class="javascript">var _this = this;
+document.onkeydown = function(ev) {
+  _this.handleKeys(ev);
+};</code></pre>
+<pre><code class="javascript">Game.prototype.handleKeys = function(ev) {
+  var _this = this;
+  switch(ev.keyCode) {
+    case 37: // Linke Pfeiltaste
+      if (_this.controller.rotation < 0) {
+        _this.controller.rotation = 360;
+      }
+      _this.controller.rotation -= 10;
+      break;
+    case 39: // Rechte Pfeiltaste
+      if (_this.controller.rotation > 360) {
+        _this.controller.rotation = 0;
+      }
+      _this.controller.rotation += 10;
+      break;
+    case 32: // SPace
+      // -> hier möchten wir später schießen können
+      break;
+  }
+};</code></pre>
               <p>In dieser Funktion prüfen wir nun ob die gewünschten Tasten gedrückt wurden und rotieren dann mit der property <code>rotation</code> in dem wir 10° hinzufügen oder entfernen. Hier müssen wir auch darauf achten das wir überprüfen müssen ob wir unter 0° sind bzw. über 360° und müssen die rotation dann zurück setzen da sonst in späterer Folge unsere Formel für das abschießen nicht funktioniert. Dadurch das wir vorher in der <code>Game.update</code> <code>stage.update();</code> aufrufen wird das Spiel aktualisiert und wir können somit unseren Kontroller bewegen.</p>
 
               <p>Nun möchten wir dem Kontroller die Funktion hinzufügen das er schießen kann. Dazu laden wir wieder eine Grafik die unser Geschoss darstellt und müssen diese je nach rotation des Kontrollers abschießen. Sobald das Geschoss auserhalb der Stage ist wollen wir das Objet entfernen da unser Spiel sonst mit der Zeit immer langsamer werden würde da es immer mehr Grafiken speichert. Zunächst verbinden wir die Space taste mit einer <code>Game.shoot</code> funktion die wir erstellen. Davor müssen wir aber noch einen so genannten <code>Container()</code> zu dem wir unsere Grafiken, unsere Bullets, zusammenfassen im Konstruktor erstellen.</p>
 
-              <pre>
-                this.bullets = new createjs.Container();
-                this.stage.addChild(this.bullets);
-              </pre>
-              <pre>
-                case 32: // SPace
-                  _this.shoot();
-                  break;
-              </pre>
-              <pre>
+              <pre><code class="javascript">this.bullets = new createjs.Container();
+this.stage.addChild(this.bullets);</code></pre>
+<pre><code class="javascript">case 32: // SPace
+  _this.shoot();
+  break;</code></pre>
+  <pre><code class="javascript">
 Game.prototype.shoot = function() {
   var bullet = new createjs.Bitmap("assets/bullet.png");
   bullet.x = this.stage.canvas.width/2-32;
@@ -276,10 +319,10 @@ Game.prototype.shoot = function() {
   bullet.regY = 32;
   bullet.rotation = this.controller.rotation;
   this.bullets.addChild(bullet);
-};</pre>
+};</code></pre>
               <p>Auch hier, genau wie bei dem Controller, setzen wir unser Geschoss in die Mitte der Stage und rotieren es in die Selbe richtung wie unser Kontroller. Danach fügen wir unsere Grafik zu dem Coontainer hinzu den wir vorher zur Stage hinzugefügt haben.</p>
               <p>Nun werden wir unsere <code>Game.update</code> funktion erweiter um die Bullets zum fliegen zu bringen</p>
-              <pre>
+              <pre><code class="javascript">
 Game.prototype.update = function() {
   var _this = this;
 for(var i = 0; i < _this.bullets.children.length; i++)
@@ -297,7 +340,7 @@ for(var i = 0; i < _this.bullets.children.length; i++)
 
     }
     this.stage.update();
-  }</pre>
+}</code></pre>
               </div>
             </div>
           </section>
@@ -307,20 +350,18 @@ for(var i = 0; i < _this.bullets.children.length; i++)
               <div class="col-lg-12">
                 <h1 class="page-header">Gegner</h1>
                 <p>Wir möchten nun alle 3 Sekunden eine gegner auf die Stage hinzufügen dazu definieren wir eine funktion <code>Game.addEnemy</code> die wir dann durch <code>setInterval</code> in userem Konstruktor alle 3 Sekunden ausführen.</p>
-                <pre>  setInterval(function(){
-                    _this.addEnemy();
-                  }, 3000);</pre>
-                <pre>Game.prototype.addEnemy = function() {
-                    var enemy = new createjs.Bitmap("assets/enemy.png");
-                    enemy.x = Math.floor(Math.random() * (this.stage.canvas.width - 100)) ;
-                    enemy.y = Math.floor(Math.random() * (this.stage.canvas.height - 100));
-                    enemy.rotation = Math.floor(Math.random()*360);
-                    this.enemies.addChild(enemy);
-                  };
-                </pre>
+                <pre><code class="javascript">setInterval(function(){
+  _this.addEnemy();
+}, 3000);</code></pre>
+<pre><code class="javascript">Game.prototype.addEnemy = function() {
+  var enemy = new createjs.Bitmap("assets/enemy.png");
+  enemy.x = Math.floor(Math.random() * (this.stage.canvas.width - 100)) ;
+  enemy.y = Math.floor(Math.random() * (this.stage.canvas.height - 100));
+  enemy.rotation = Math.floor(Math.random()*360);
+  this.enemies.addChild(enemy);
+};</code></pre>
                 <p>Wir laden wieder eine Grafik, diesmal einen Asteoriten, den wir an einer zufälligen stelle auf unsere Stage plazieren und ihm eine zufällige richtung geben. Nun müssen wir uns in der <code>update</code> funktion darum kümmer das unser gegner sich auch bewegt und noch wichtiger, das er verschwindet wenn wir Ihn mit unserem Geschoss treffen.</p>
-                <pre>
-Game.prototype.update = function() {
+                <pre><code class="javascript">Game.prototype.update = function() {
   var _this = this;
   for(var i = 0; i < _this.bullets.children.length; i++)
    {
@@ -359,67 +400,12 @@ Game.prototype.update = function() {
    }
    _this.stage.update();
 };
-</pre>
+</code></pre>
 <p>Um zu überprüfen ob wir einen Gegner getroffen haben müssen wir einen so genannten Hittest machen. Diesen programmieren wir innerhalb der iteration über alle Bullets da wir für jede Bullet prüfen müssen. Wir machen einen for-schleife die durch alle Enemies iteriert und holen uns die punkte mit den wir dann prüfen über <code>_this.bullets.children[i].localToLocal(0,0, _this.enemies.children[j]);</code>. <code>localToLocal</code> Kümmert sich darum die richtigen Punkte zu ermitteln die wir dann unserm Hittest übergeben.
 Weiters müssen wir (genau wie bei unseren Bullets) die flurichtung der Enemies berechnen. Dazu verwenden wir die selbe Formel wie bei den Bullets doch multiplizieren nur mit 2 damit unsere Gegner sich langsamer bewegen.  </p>
               </div>
             </div>
           </section>
-
-        <!--<section id="section-animation">
-          <div class="row">
-            <div class="col-lg-12">
-              <h1 class="page-header">Animation <small>let's get things movin'</small></h1>
-              <p>Eine Animation verändert, über einen Zeitraum, die visuellen Eigenschaften eines Objektes. In der
-                Programmierung werden dafür einige Paramter defieniert wir z.B.: <code>setInterval()</code>, <code>setTimeout()</code>, oder
-                <code>requestAnimationFrame()</code>. Wichtig ist es die Funktion <code>stage.update()</code> aufzurufen die das Ganze dann
-                anzeigt.</p>
-              <pre>
-                circle.x = circle.x + 3;
-                if (circle.x > stage.canvas.width) { circle.x = 0; }
-              </pre>
-              <h2>Ticker();</h2>
-              <p>Der Ticker ist eine Klasse und bietet ein statisches Interface um einen Tick an verschiedene Objekte zu schicken.
-                Dafür brauchen wir einen event listener. Mit <code>addEventListener("tick", handler);</code> können wir diesen hinzufügen.
-                Dieser listener kann eine Funktion oder einem mit dem handleEvent, definiertes Objekt.</p>
-              <pre>createjs.Ticker.addEventListener("tick", tick);
-function tick() { console.log("TICK!!!"); }</pre>
-
-              <p>Im unten stehenden Code kann man die framerate ändern.</p>
-              <pre>// these are equivalent, 1000ms / 40fps = 25ms
-createjs.Ticker.setInterval(25);
-createjs.Ticker.setFPS(40);</pre>
-
-              <h2>Zeit basierende Animationen</h2>
-              <p>Diese Animationen sind unabhängig von der frame rate und ermöglicht ihnen die framrate dynamisch zu verändern.
-                Der Ticker spielt hier eine große Rolle.</p>
-              <pre>function tick(event) {
-    // move 100 pixels per second (elapsedTimeInMS / 1000msPerSecond * pixelsPerSecond):
-    circle.x += event.delta/1000*100;
-    // this will log a steadily increasing value:
-    console.log("total time: "+createjs.Ticker.getTime());
-}</pre>
-
-              <h2>Tween.js</h2>
-              <p>Es gibt einige tweening Klassen  die das Animieren vereinfachen wie z.B.: TweenJS & TweenLite
-TweenJS ist eine Javascript Bibliothek und verwendet stage.update() nicht, weil es eine eigene Methode zum refreshen
-der Stage verwendet. Es wird von allen Browsern unterstützt.Um einen Tween aufzurufen verwendet man folgender Zeile
- <code>(Tween(target, [props], [pluginData]);</code>.</p>
- <pre>•	Target = Das Zielobjekt welches getweent wird.
-•	Props = Die Einstellungen die man dem Tween zuordnen möchte.
-  o	loop: sets the loop property on this tween.
-  o	useTicks: uses ticks for all durations instead of milliseconds.
-  o	ignoreGlobalPause: sets the ignoreGlobalPause property on this tween.
-  o	override: if true, Tween.removeTweens(target) will be called to remove any other tweens with the same target.
-  o	paused: indicates whether to start the tween paused.
-  o	position: indicates the initial position for this tween.
-  o	onChange: specifies a listener for the "change" event.
-•	pluginData = Ein Objekt welches Daten enthält für die Installation von Plug-Ins.
-</pre>
-
-            </div>
-          </div>
-        </section>-->
 
         <section id="section-about">
           <h1 class="page-header">About</h1>

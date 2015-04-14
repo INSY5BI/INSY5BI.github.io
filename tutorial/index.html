@@ -353,6 +353,9 @@ for(var i = 0; i < _this.bullets.children.length; i++)
                 <pre><code class="javascript">setInterval(function(){
   _this.addEnemy();
 }, 3000);</code></pre>
+Auch hier müssen wir wieder einen Container erzeugen in dem wir unsere Gegner speichern.
+<pre><code class="javascript">this.bullets = new createjs.Container();
+this.stage.addChild(this.bullets);</code></pre>
 <pre><code class="javascript">Game.prototype.addEnemy = function() {
   var enemy = new createjs.Bitmap("assets/enemy.png");
   enemy.x = Math.floor(Math.random() * (this.stage.canvas.width - 100)) ;

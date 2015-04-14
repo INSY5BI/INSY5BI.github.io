@@ -123,6 +123,13 @@ Game.prototype.update = function() {
    for(var j = 0; j < _this.enemies.children.length; j++) {
      _this.enemies.children[j].x = 2 * Math.cos((_this.enemies.children[j].rotation-90)/(Math.PI/4)) + _this.enemies.children[j].x;
      _this.enemies.children[j].y = 2 * Math.sin((_this.enemies.children[j].rotation-90)/(Math.PI/4)) + _this.enemies.children[j].y;
+
+     // Out of stage
+     if(_this.enemies.children[j].y < -2 || _this.enemies.children[j].y > _this.canvasHeight ||
+       _this.enemies.children[j].x < -2 || _this.enemies.children[j].x > _this.canvasWidth )
+      {
+          _this.enemies.removeChildAt(i);
+      }
    }
    _this.stage.update();
 };

@@ -57,7 +57,7 @@
         <li><a href="globalToLocal.html">globalToLocal</a></li>
         <li><a href="hasEventListener.html">hasEventListener</a></li>
         <li><a href="hitTest.html">hitTest</a></li>
-        <li><a href="isVisible.html">isVisible</a></li>
+        <li class="active"><a href="isVisible.html">isVisible</a></li>
         <li><a href="localToGlobal.html">localToGlobal</a></li>
         <li><a href="localToLocal.html">localToLocal</a></li>
         <li><a href="off.html">off</a></li>
@@ -65,7 +65,7 @@
         <li><a href="removeAllEventListeners.html">removeAllEventListeners</a></li>
         <li><a href="removeEventListener.html">removeEventListener</a></li>
         <li><a href="set.html">set</a></li>
-        <li class="active"><a href="setBounds.html">setBounds</a></li>
+        <li><a href="setBounds.html">setBounds</a></li>
         <li><a href="setTransform.html">setTransform</a></li>
         <li><a href="toString.html">toString</a></li>
         <li><a href="uncache.html">uncache</a></li>
@@ -113,55 +113,42 @@
         function start() {
             var myImg = new Image();
             myImg.src = "thumbnail.png";
+            myImg.addEventListener("load", function(){
+              var bitmap = new createjs.Bitmap(myImg);
+              console.log("Loaded");
+              stage.addChild(bitmap);
 
-            myImg.addEventListener("load", function () {
-                var bitmap = new createjs.Bitmap(myImg);
-                bitmap.setBounds(50, 50, 50, 80);
-                bitmap.scaleX = bitmap.scaleY = 0.3;
-
-                var container = new createjs.Container();
-                container.addChild(bitmap);
-
-                stage.addChild(container);
-                stage.update();
-
-                console.log(bitmap.getBounds());
-                console.log(bitmap.getTransformedBounds());
-
-
-
-            }, true);
-
+              bitmap.addEventListener("click", function(){
+                console.log("Clicked!");
+                console.log(bitmap.skewX);
+                bitmap.skewX = 2;
+                console.log(bitmap.skewX);
+              });
+            },true);
         }
 
         window.addEventListener("load", init, false);
             </script>
-            <h3>setBounds</h3>
+            <h3>skewX</h3>
             <p>returns true</p>
             <canvas id="myCanvas" width="600" height="400" style="border: 3px solid black;"></canvas>
           </div>
           <div class="col-lg-12">
             <pre>
             <code class="javascript">var myImg = new Image();
-myImg.src = "testBild.jpg";
+myImg.src = "thumbnail.png";
+myImg.addEventListener("load", function(){
+  var bitmap = new createjs.Bitmap(myImg);
+  console.log("Loaded");
+  stage.addChild(bitmap);
 
-myImg.addEventListener("load", function () {
-    var bitmap = new createjs.Bitmap(myImg);
-    bitmap.setBounds(50, 50, 50, 80);
-    bitmap.scaleX = bitmap.scaleY = 0.3;
-
-    var container = new createjs.Container();
-    container.addChild(bitmap);
-
-    stage.addChild(container);
-    stage.update();
-
-    console.log(bitmap.getBounds());
-    console.log(bitmap.getTransformedBounds());
-
-
-
-}, true);
+  bitmap.addEventListener("click", function(){
+    console.log("Clicked!");
+    console.log(bitmap.skewX);
+    bitmap.skewX = 2;
+    console.log(bitmap.skewX);
+  });
+},true);
             </code>
             </pre>
           </div>

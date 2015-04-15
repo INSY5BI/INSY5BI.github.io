@@ -46,7 +46,7 @@
         <li><a href="addEventListener.html">addEventListener</a></li>
         <li><a href="cache.html">cache</a></li>
         <li><a href="clone.html">clone</a></li>
-        <li class="active"><a href="dispatchEvent.html">dispatchEvent</a></li>
+        <li><a href="dispatchEvent.html">dispatchEvent</a></li>
         <li><a href="draw.html">draw</a></li>
         <li><a href="getBounds.html">getBounds</a></li>
         <li><a href="getCacheDataURL.html">getCacheDataURL</a></li>
@@ -69,7 +69,7 @@
         <li><a href="setTransform.html">setTransform</a></li>
         <li><a href="toString.html">toString</a></li>
         <li><a href="uncache.html">uncache</a></li>
-        <li><a href="updateCache.html">updateCache</a></li>
+        <li class="active"><a href="updateCache.html">updateCache</a></li>
         <li><a href="updateContext.html">updateContext</a></li>
         <li><a href="willTrigger.html">willTrigger</a></li>
         <li class="sidebar-brand">
@@ -95,81 +95,109 @@
         <div class="row">
           <div class="col-lg-12">
             <script>
- 				var stage;
+ 				var myImg;
+				var bitmap;
 
-        function init()
-        {
-          stage = new createjs.Stage(document.getElementById("myCanvas"));
-          createjs.Ticker.setFPS(30);
-          createjs.Ticker.addEventListener("tick",updateStage,false);
-          start();
-        }
+				var angle = 0;
+				var range = 30;
+				var speed = 0.02;
 
-        function updateStage()
-        {
-          stage.update();
-        }
-        function start()
-        {
-          var myImg = new Image();
-          myImg.src = "thumbnail.png";
-          myImg.addEventListener("load", function(){
-            var bitmap = new createjs.Bitmap(myImg);
-            console.log("Loaded");
-            bitmap.x = 10;
-            
-            var event = new createjs.Event("megaEvent");
+				function init(){
+					stage = new createjs.Stage(document.getElementById("myCanvas"));
+					createjs.Ticker.setFPS(30);
+					start();
+				}
 
-            bitmap.addEventListener("click", function(){
-              console.log("Clicked!");
-              bitmap.dispatchEvent("aNewEvent");
-              bitmap.dispatchEvent(event);
-            });
+				function start(){
+					myImg = new Image();
+					myImg.src = "thumbnail.png";
+					myImg.addEventListener("load", function(){
+						bitmap = new createjs.Bitmap(myImg);
 
-            bitmap.addEventListener("aNewEvent", function(){
-              console.log("Dispatching event with a string worked!");
-            });
+						// Erstellt Bitmap
+						bitmap = new createjs.Bitmap(myImg);
 
-            bitmap.addEventListener("megaEvent", function(){
-              console.log("Dispatching event with an event worked!");
-            });
-            stage.addChild(bitmap);
-          },true);
-          
-        }
+						bitmap.addEventListener("click", function(){
+							createjs.Ticker.removeEventListener("tick", blur);
 
-        window.addEventListener("load",init,false);
+							// Uncache bitmap, da man nur dann cachen sollte when ein Filter angewendet wird,
+							// da Funktion für Filter nicht mehr ausgeführt wird, wegen removeEventListener
+							bitmap.uncache();
+						});
+
+						// Fügt Bitmap in den Cache hinzu
+						bitmap.cache(0, 0, myImg.width, myImg.height);
+
+						stage.addChild(bitmap);
+						createjs.Ticker.addEventListener("tick", blur);
+
+					},true);
+				}
+
+				function blur(){
+					angle += speed;
+					var value = (Math.sin(angle) + 1) / 2 * range;
+
+					// Updated Cache -> Erstellt neue CacheID welche mit "bitmap.getCacheDataURL()" abrufbar ist
+					bitmap.updateCache();
+
+					// Wendet Filter an
+					bitmap.filters = [new createjs.BlurFilter(value, value, 2)];
+					stage.update(event);
+				}
+
+				window.addEventListener("load",init,false);
             </script>
-            <h3>dispatchEvent</h3>
-            <p>Mit dispatchEvent kann man Events aussenden. Wenn du zum Beispiel einen listener hast, der auf "supercool" hört kannst du mit dispatchEvent das Event "supercool" senden damit der Listener reagiert</p>
+            <h3>uncache</h3>
+            <p>Erstellt neue CacheID welche mit "bitmap.getCacheDataURL()" abrufbar ist.</p>
             <canvas id="myCanvas" width="600" height="400" style="border: 3px solid black;"></canvas>
           </div>
           <div class="col-lg-12">
             <pre>
-            <code class="javascript">var myImg = new Image();
-myImg.src = "../thumbnail.png";
-myImg.addEventListener("load", function(){
-  var bitmap = new createjs.Bitmap(myImg);
-  console.log("Loaded");
-  bitmap.x = 10;
-  
-  var event = new createjs.Event("megaEvent");
+            <code class="javascript">var myImg;
+var bitmap;
 
-  bitmap.addEventListener("click", function(){
-    console.log("Clicked!");
-    bitmap.dispatchEvent("aNewEvent");
-    bitmap.dispatchEvent(event);
-  });
+var angle = 0;
+var range = 30;
+var speed = 0.02;
+				
+function start(){
+	myImg = new Image();
+	myImg.src = "../thumbnail.png";
+	myImg.addEventListener("load", function(){
+		bitmap = new createjs.Bitmap(myImg);
 
-  bitmap.addEventListener("aNewEvent", function(){
-    console.log("Dispatching event with a string worked!");
-  });
+		// Erstellt Bitmap
+		bitmap = new createjs.Bitmap(myImg);
 
-  bitmap.addEventListener("megaEvent", function(){
-    console.log("Dispatching event with an event worked!");
-  });
-  stage.addChild(bitmap);
-},true);
+		bitmap.addEventListener("click", function(){
+			createjs.Ticker.removeEventListener("tick", blur);
+
+			// Uncache bitmap, da man nur dann cachen sollte when ein Filter angewendet wird,
+			// da Funktion für Filter nicht mehr ausgeführt wird, wegen removeEventListener
+			bitmap.uncache();
+		});
+
+		// Fügt Bitmap in den Cache hinzu
+		bitmap.cache(0, 0, myImg.width, myImg.height);
+
+		stage.addChild(bitmap);
+		createjs.Ticker.addEventListener("tick", blur);
+
+	},true);
+}
+
+function blur(){
+	angle += speed;
+	var value = (Math.sin(angle) + 1) / 2 * range;
+
+	// Updated Cache -> Erstellt neue CacheID welche mit "bitmap.getCacheDataURL()" abrufbar ist
+	bitmap.updateCache();
+
+	// Wendet Filter an
+	bitmap.filters = [new createjs.BlurFilter(value, value, 2)];
+	stage.update(event);
+}
             </code>
             </pre>
           </div>

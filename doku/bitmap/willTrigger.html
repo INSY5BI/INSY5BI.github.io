@@ -46,7 +46,7 @@
         <li><a href="addEventListener.html">addEventListener</a></li>
         <li><a href="cache.html">cache</a></li>
         <li><a href="clone.html">clone</a></li>
-        <li class="active"><a href="dispatchEvent.html">dispatchEvent</a></li>
+        <li><a href="dispatchEvent.html">dispatchEvent</a></li>
         <li><a href="draw.html">draw</a></li>
         <li><a href="getBounds.html">getBounds</a></li>
         <li><a href="getCacheDataURL.html">getCacheDataURL</a></li>
@@ -71,7 +71,7 @@
         <li><a href="uncache.html">uncache</a></li>
         <li><a href="updateCache.html">updateCache</a></li>
         <li><a href="updateContext.html">updateContext</a></li>
-        <li><a href="willTrigger.html">willTrigger</a></li>
+        <li class="active"><a href="willTrigger.html">willTrigger</a></li>
         <li class="sidebar-brand">
           <a href="#">Properties</a>
         </li>
@@ -95,80 +95,59 @@
         <div class="row">
           <div class="col-lg-12">
             <script>
- 				var stage;
+ 		var stage;
+        var pictures = [];
+        var listeners = [];
 
-        function init()
-        {
-          stage = new createjs.Stage(document.getElementById("myCanvas"));
-          createjs.Ticker.setFPS(30);
-          createjs.Ticker.addEventListener("tick",updateStage,false);
-          start();
+        function init() {
+            stage = new createjs.Stage(document.getElementById("myCanvas"));
+            createjs.Ticker.setFPS(30);
+            createjs.Ticker.addEventListener("tick", updateStage, false);
+            start();
         }
 
-        function updateStage()
-        {
-          stage.update();
-        }
-        function start()
-        {
-          var myImg = new Image();
-          myImg.src = "thumbnail.png";
-          myImg.addEventListener("load", function(){
-            var bitmap = new createjs.Bitmap(myImg);
-            console.log("Loaded");
-            bitmap.x = 10;
-            
-            var event = new createjs.Event("megaEvent");
-
-            bitmap.addEventListener("click", function(){
-              console.log("Clicked!");
-              bitmap.dispatchEvent("aNewEvent");
-              bitmap.dispatchEvent(event);
-            });
-
-            bitmap.addEventListener("aNewEvent", function(){
-              console.log("Dispatching event with a string worked!");
-            });
-
-            bitmap.addEventListener("megaEvent", function(){
-              console.log("Dispatching event with an event worked!");
-            });
-            stage.addChild(bitmap);
-          },true);
-          
+        function updateStage() {
+            stage.update();
         }
 
-        window.addEventListener("load",init,false);
+        function start() {
+var myImg = new Image();
+myImg.src = "thumbnail.png";
+myImg.addEventListener("load", function(){
+  var bitmap = new createjs.Bitmap(myImg);
+  console.log("Loaded");
+  stage.addChild(bitmap);
+
+  bitmap.addEventListener("click", function(){
+    console.log("Clicked!");
+    console.log(bitmap.visible);
+    bitmap.visible = false;
+    console.log(bitmap.visible);
+  });
+},true);
+        }
+
+        window.addEventListener("load", init, false);
             </script>
-            <h3>dispatchEvent</h3>
-            <p>Mit dispatchEvent kann man Events aussenden. Wenn du zum Beispiel einen listener hast, der auf "supercool" hört kannst du mit dispatchEvent das Event "supercool" senden damit der Listener reagiert</p>
+            <h3>willTrigger</h3>
+            <p>Sehr ähnlich zu hasEventListener, jedoch werden auch die Vorfahren auf das Event überprüft.<br>Bei erfolgreicher Findung wird nur true zurückgegebenm jedoch nicht das entsprechende Objekt.</p>
             <canvas id="myCanvas" width="600" height="400" style="border: 3px solid black;"></canvas>
           </div>
           <div class="col-lg-12">
             <pre>
             <code class="javascript">var myImg = new Image();
-myImg.src = "../thumbnail.png";
+myImg.src = "thumbnail.png";
 myImg.addEventListener("load", function(){
   var bitmap = new createjs.Bitmap(myImg);
   console.log("Loaded");
-  bitmap.x = 10;
-  
-  var event = new createjs.Event("megaEvent");
+  stage.addChild(bitmap);
 
   bitmap.addEventListener("click", function(){
     console.log("Clicked!");
-    bitmap.dispatchEvent("aNewEvent");
-    bitmap.dispatchEvent(event);
+    console.log(bitmap.visible);
+    bitmap.visible = false;
+    console.log(bitmap.visible);
   });
-
-  bitmap.addEventListener("aNewEvent", function(){
-    console.log("Dispatching event with a string worked!");
-  });
-
-  bitmap.addEventListener("megaEvent", function(){
-    console.log("Dispatching event with an event worked!");
-  });
-  stage.addChild(bitmap);
 },true);
             </code>
             </pre>

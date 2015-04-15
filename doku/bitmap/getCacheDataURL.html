@@ -44,12 +44,12 @@
           <a href="#">Methods</a>
         </li>
         <li><a href="addEventListener.html">addEventListener</a></li>
-        <li class="active"><a href="cache.html">cache</a></li>
+        <li><a href="cache.html">cache</a></li>
         <li><a href="clone.html">clone</a></li>
         <li><a href="dispatchEvent.html">dispatchEvent</a></li>
         <li><a href="draw.html">draw</a></li>
         <li><a href="getBounds.html">getBounds</a></li>
-        <li><a href="getCacheDataURL.html">getCacheDataURL</a></li>
+        <li class="active"><a href="getCacheDataURL.html">getCacheDataURL</a></li>
         <li><a href="getConcatenatedDisplayProps.html">getConcatenatedDisplayProps</a></li>
         <li><a href="getConcatenatedMatrix.html">getConcatenatedMatrix</a></li>
         <li><a href="getMatrix.html">getMatrix</a></li>
@@ -130,6 +130,7 @@
 
 						stage.addChild(bitmap);
 						createjs.Ticker.addEventListener("tick", blur);
+            console.log(bitmap.getCacheDataURL());
 
 					},true);
 				}
@@ -148,8 +149,8 @@
 
 				window.addEventListener("load",init,false);
             </script>
-            <h3>cache</h3>
-            <p>returns true</p>
+            <h3>getCacheDataURL</h3>
+            <p>Gibt die Data-URL für den Cache, oder null wenn das Objekt nicht gecached wurde, zurück.</p>
             <canvas id="myCanvas" width="600" height="400" style="border: 3px solid black;"></canvas>
           </div>
           <div class="col-lg-12">
@@ -183,6 +184,8 @@ function start(){
 
 		stage.addChild(bitmap);
 		createjs.Ticker.addEventListener("tick", blur);
+
+    console.log(bitmap.getCacheDataURL());
 
 	},true);
 }

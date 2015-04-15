@@ -411,7 +411,7 @@ this.stage.addChild(this.enemies);</code></pre>
    _this.stage.update();
 };
 </code></pre>
-<p>Um zu überprüfen ob wir einen Gegner getroffen haben müssen wir einen so genannten Hittest machen. Diesen programmieren wir innerhalb der iteration über alle Bullets da wir für jede Bullet prüfen müssen. Wir machen einen for-schleife die durch alle Enemies iteriert und holen uns die punkte mit den wir dann prüfen über <code>_this.bullets.children[i].localToLocal(0,0, _this.enemies.children[j]);</code>. <code>localToLocal</code> Kümmert sich darum die richtigen Punkte zu ermitteln die wir dann unserm Hittest übergeben.
+<p>Um zu überprüfen ob wir einen Gegner getroffen haben müssen wir einen so genannten Hittest machen. Diesen programmieren wir innerhalb der iteration über alle Bullets da wir für jede Bullet prüfen müssen. Wir machen einen for-schleife die durch alle Enemies iteriert und holen uns die punkte mit den wir dann prüfen über <code>_this.bullets.children[i].localToLocal(0,0, _this.enemies.children[j]);</code>. <a href="http://insy5bi.github.io/doku/bitmap/localToLocal.html"><code>localToLocal</code></a> Kümmert sich darum die richtigen Punkte zu ermitteln die wir dann unserm Hittest übergeben.
 Weiters müssen wir (genau wie bei unseren Bullets) die flurichtung der Enemies berechnen. Dazu verwenden wir die selbe Formel wie bei den Bullets doch multiplizieren nur mit 2 damit unsere Gegner sich langsamer bewegen.  </p>
               </div>
             </div>

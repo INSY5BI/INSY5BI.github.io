@@ -47,7 +47,7 @@
         <li><a href="cache.html">cache</a></li>
         <li><a href="clone.html">clone</a></li>
         <li><a href="dispatchEvent.html">dispatchEvent</a></li>
-        <li class="active"><a href="draw.html">draw</a></li>
+        <li><a href="draw.html">draw</a></li>
         <li><a href="getBounds.html">getBounds</a></li>
         <li><a href="getCacheDataURL.html">getCacheDataURL</a></li>
         <li><a href="getConcatenatedDisplayProps.html">getConcatenatedDisplayProps</a></li>
@@ -57,7 +57,7 @@
         <li><a href="globalToLocal.html">globalToLocal</a></li>
         <li><a href="hasEventListener.html">hasEventListener</a></li>
         <li><a href="hitTest.html">hitTest</a></li>
-        <li><a href="isVisible.html">isVisible</a></li>
+        <li class="active"><a href="isVisible.html">isVisible</a></li>
         <li><a href="localToGlobal.html">localToGlobal</a></li>
         <li><a href="localToLocal.html">localToLocal</a></li>
         <li><a href="off.html">off</a></li>
@@ -95,42 +95,55 @@
         <div class="row">
           <div class="col-lg-12">
             <script>
- 				var stage;
+ 		var stage;
+        var pictures = [];
+        var listeners = [];
 
-        function init()
-        {
-          stage = new createjs.Stage(document.getElementById("myCanvas"));
-          createjs.Ticker.setFPS(30);
-          createjs.Ticker.addEventListener("tick",updateStage,false);
-          start();
+        function init() {
+            stage = new createjs.Stage(document.getElementById("myCanvas"));
+            createjs.Ticker.setFPS(30);
+            createjs.Ticker.addEventListener("tick", updateStage, false);
+            start();
         }
 
-        function updateStage()
-        {
-          stage.update();
-        }
-        function start()
-        {
-
-
-          var ctx = stage.canvas.getContext("2d");
-
-          var shape = new createjs.Shape();
-          shape.graphics.beginFill(createjs.Graphics.getHSL(0,0,0)).drawRect(0,0,100,100);
-
-          shape.draw(ctx);
-          
+        function updateStage() {
+            stage.update();
         }
 
-        window.addEventListener("load",init,false);
+        function start() {
+			var myImg = new Image();
+			myImg.src = "thumbnail.png";
+			myImg.addEventListener("load", function(){
+				var bitmap = new createjs.Bitmap(myImg);
+				bitmap.name = "Thumbnail";
+				stage.addChild(bitmap);
+				console.log(bitmap.toString());
+			},true);
+        }
+
+        window.addEventListener("load", init, false);
             </script>
-            <h3>draw</h3>
-            <p>Zeichnet das Objekt in den angegebenen Context hinein. Gibt true zurück, wenn die Methode erfolgreich war.<br>Diese Methode wird für interne Zwecke benutzt.</p>
+            <h3>toString</h3>
+            <p>Gibt den Namen des angegebenen Objektes zurück. Der Name muss über die Property "name" manuell definiert werden.</p>
+            <p>Ausgabe: "[Bitmap (name=Thumbnail)]"</p>
             <canvas id="myCanvas" width="600" height="400" style="border: 3px solid black;"></canvas>
           </div>
           <div class="col-lg-12">
             <pre>
-            <code class="javascript">//kein Beispiel
+            <code class="javascript">var myImg = new Image();
+myImg.src = "thumbnail.png";
+myImg.addEventListener("load", function(){
+  var bitmap = new createjs.Bitmap(myImg);
+  console.log("Loaded");
+  stage.addChild(bitmap);
+
+  bitmap.addEventListener("click", function(){
+    console.log("Clicked!");
+    console.log(bitmap.tickEnabled);
+    bitmap.tickEnabled = false;
+    console.log(bitmap.tickEnabled);
+  });
+},true);
             </code>
             </pre>
           </div>

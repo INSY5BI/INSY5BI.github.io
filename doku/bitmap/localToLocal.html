@@ -54,12 +54,12 @@
         <li><a href="getConcatenatedMatrix.html">getConcatenatedMatrix</a></li>
         <li><a href="getMatrix.html">getMatrix</a></li>
         <li><a href="getTransformedBounds.html">getTransformedBounds</a></li>
-        <li class="active"><a href="globalToLocal.html">globalToLocal</a></li>
+        <li><a href="globalToLocal.html">globalToLocal</a></li>
         <li><a href="hasEventListener.html">hasEventListener</a></li>
         <li><a href="hitTest.html">hitTest</a></li>
         <li><a href="isVisible.html">isVisible</a></li>
         <li><a href="localToGlobal.html">localToGlobal</a></li>
-        <li><a href="localToLocal.html">localToLocal</a></li>
+        <li class="active"><a href="localToLocal.html">localToLocal</a></li>
         <li><a href="off.html">off</a></li>
         <li><a href="on.html">on</a></li>
         <li><a href="removeAllEventListeners.html">removeAllEventListeners</a></li>
@@ -108,35 +108,40 @@
           function updateStage()
           {
             shape.alpha = 0.1;
-            var pt = shape.globalToLocal(stage.mouseX, stage.mouseY);
+            var pt = shape.localToLocal(100, 100, shape2);
             if (shape.hitTest(pt.x, pt.y)) {
               shape.alpha = 1;
             }
+            shape2.rotation += 1;
             stage.update(event);
           }
           function start()
           {
               shape = new createjs.Shape();
-              shape.graphics.beginFill(createjs.Graphics.getHSL(0,0,0)).drawRect(0,0,100,100);
-              shape.x = 100;
-              shape.y = 100;
+              shape.graphics.beginFill(createjs.Graphics.getHSL(0,0,0)).drawCircle(100,100,50);
               stage.addChild(shape);
+
+              shape2 = new createjs.Shape();
+              shape2.graphics.beginFill(createjs.Graphics.getHSL(0,0,0)).drawRect(0,0,100,100);
+              stage.addChild(shape2);
           }
 
           window.addEventListener("load",init,false);
             </script>
             <h3>localToLocal</h3>
-            <p>returns true</p>
+            <p>Die Koordianten werden vom lokalen Koordinatensystems eines Objektes in das lokale des anderen Objektes umgewandelt.<br>Das kann ebenfalls über localToGlobal und globalToLocal bewerkstelligt werden; localTolocal ist eine Abkürzung.</p>
             <canvas id="myCanvas" width="600" height="400" style="border: 3px solid black;"></canvas>
           </div>
           <div class="col-lg-12">
             <pre>
             <code class="javascript">//start()
 shape = new createjs.Shape();
-shape.graphics.beginFill(createjs.Graphics.getHSL(0,0,0)).drawCircle(0,0,50);
-shape.x = 100;
-shape.y = 100;
+shape.graphics.beginFill(createjs.Graphics.getHSL(0,0,0)).drawCircle(100,100,50);
 stage.addChild(shape);
+
+shape2 = new createjs.Shape();
+shape2.graphics.beginFill(createjs.Graphics.getHSL(0,0,0)).drawRect(0,0,100,100);
+stage.addChild(shape2);
             </code>
             </pre>
           </div>
@@ -144,10 +149,11 @@ stage.addChild(shape);
             <pre>
             <code class="javascript">//updateStage()
 shape.alpha = 0.1;
-var pt = shape.globalToLocal(stage.mouseX, stage.mouseY);
+var pt = shape.localToLocal(100, 100, shape2);
 if (shape.hitTest(pt.x, pt.y)) {
   shape.alpha = 1;
 }
+shape2.rotation += 1;
 stage.update(event);
             </code>
             </pre>

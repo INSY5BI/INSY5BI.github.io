@@ -108,50 +108,38 @@
         }
 
         function updateStage()
-        {
+          {
             stage.update();
-        }
-        function start()
-        {
-            var myImg = new Image();
-            myImg.src = "thumbnail.png";
-            
-            myImg.addEventListener("load",function()
-            {
-                var bitmap = new createjs.Bitmap(myImg);
-                bitmap.x = 200;
-                bitmap.y = 200;
-                stage.addChild( bitmap );
-                
-                var point = bitmap.localToGlobal(100, 100);
-                console.log(point);
-            
-            },true);
-            
-        }
+          }
+          function start()
+          {
+            shape = new createjs.Shape();
+            shape.graphics.beginFill(createjs.Graphics.getHSL(0,0,0)).drawRect(0,0,100,100);
+            shape.x = 100;
+            shape.y = 100;
+            stage.addChild(shape);
+
+            var point = shape.localToGlobal(100, 100);
+            console.log("x: " + point.x, "y: " + point.y);
+          }
 
         window.addEventListener("load",init,false);
             </script>
             <h3>localToGlobal</h3>
-            <p>returns true</p>
+            <p>Stellt die Umkehrung zu globalToLocal dar, bzw. wandelt Koordinaten eines lokalen Koordinatensystems in das globale Koordinatensystem um.</p>
+            <p>Gibt die Koordinaten 200, 200 zurück.</p>
             <canvas id="myCanvas" width="600" height="400" style="border: 3px solid black;"></canvas>
           </div>
           <div class="col-lg-12">
             <pre>
-            <code class="javascript">var myImg = new Image();
-myImg.src = "thumbnail.png";
+            <code class="javascript">shape = new createjs.Shape();
+shape.graphics.beginFill(createjs.Graphics.getHSL(0,0,0)).drawRect(0,0,100,100);
+shape.x = 100;
+shape.y = 100;
+stage.addChild(shape);
 
-myImg.addEventListener("load",function()
-{
-    var bitmap = new createjs.Bitmap(myImg);
-    bitmap.x = 200;
-    bitmap.y = 200;
-    stage.addChild( bitmap );
-    
-    var point = bitmap.localToGlobal(100, 100);
-    console.log(point);
-
-},true);
+var point = shape.localToGlobal(100, 100);
+console.log("x: " + point.x, "y: " + point.y);
             </code>
             </pre>
           </div>

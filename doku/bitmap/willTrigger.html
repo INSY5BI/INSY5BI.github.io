@@ -123,7 +123,12 @@ myImg.addEventListener("load", function(){
     console.log(bitmap.visible);
     bitmap.visible = false;
     console.log(bitmap.visible);
+    stage.addEventListener("click", function(){
+      console.log("This will trigger");
+    });
   });
+  
+  console.log(bitmap.willTrigger("click"));
 },true);
         }
 
@@ -147,7 +152,12 @@ myImg.addEventListener("load", function(){
     console.log(bitmap.visible);
     bitmap.visible = false;
     console.log(bitmap.visible);
+    stage.addEventListener("click", function(){
+      console.log("This will trigger");
+    });
   });
+  
+  console.log(bitmap.willTrigger("click"));
 },true);
             </code>
             </pre>
